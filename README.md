@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/mimir.svg?style=shield)](https://circleci.com/gh/giantswarm/mimir)
+[![CircleCI](https://circleci.com/gh/giantswarm/mimir-app.svg?style=shield)](https://circleci.com/gh/giantswarm/mimir-app)
 
 [Read me after cloning this template (GS staff only)](https://intranet.giantswarm.io/docs/dev-and-releng/app-developer-processes/adding_app_to_appcatalog/)
 
