@@ -1,12 +1,2 @@
-name: mimir
-serviceType: managed
+mimir:
 
-project:
-  branch: "[[ .Branch ]]"
-  commit: "[[ .SHA ]]"
-
-image:
-  registry: quay.io
-  name: giantswarm/mimir
-  tag: v0.0.1
-  pullPolicy: IfNotPresent

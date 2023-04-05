@@ -1,0 +1,2 @@
+helm/mimir/charts/*.tgz
+helm/mimir/Chart.lock
