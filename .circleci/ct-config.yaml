@@ -1,0 +1,3 @@
+---
+chart-repos:
+- mimir=https://github.com/grafana/mimir
