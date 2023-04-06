@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
+## [0.1.0] - 2023-04-06
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/tree/main
+- changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
+- First release 
+
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/giantswarm/mimir-app/releases/tag/v0.1.0

@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: 2.7.1
 name: mimir
 description: A Helm chart for grafana's Mimir
-icon:  https://s.giantswarm.io/app-icons/grafana-mimir/1/light-icon.svg
+icon: https://s.giantswarm.io/app-icons/grafana-mimir/1/light-icon.svg
 home: https://github.com/giantswarm/mimir-app
 maintainers:
   - name: giantswarm/team-atlas
@@ -13,6 +13,6 @@ dependencies:
   - name: mimir-distributed
     version: 4.3.0
     repository: https://grafana.github.io/helm-charts
-version: 0.0.1
+version: 0.1.0
 annotations:
   application.giantswarm.io/team: atlas
