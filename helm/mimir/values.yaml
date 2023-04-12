@@ -9,7 +9,7 @@ mimir:
 
   alertmanager:
     enabled: false
-  
+
   distributor:
     replicas: 1
 
@@ -17,7 +17,7 @@ mimir:
       requests:
         cpu: 100m
         memory: 512Mi
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
@@ -36,15 +36,15 @@ mimir:
       requests:
         cpu: 100m
         memory: 512Mi
-    
+
     # -- Pod Disruption Budget for ingester, this will be applied across availability zones to prevent losing redundancy
     podDisruptionBudget:
       maxUnavailable: 1
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   overrides_exporter:
     enabled: true
     replicas: 1
@@ -57,7 +57,7 @@ mimir:
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   ruler:
     enabled: true
     replicas: 1
@@ -66,11 +66,11 @@ mimir:
       requests:
         cpu: 100m
         memory: 128Mi
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   querier:
     replicas: 2
 
@@ -78,11 +78,11 @@ mimir:
       requests:
         cpu: 100m
         memory: 128Mi
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   query_frontend:
     replicas: 1
 
@@ -90,11 +90,11 @@ mimir:
       requests:
         cpu: 100m
         memory: 128Mi
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   query_scheduler:
     enabled: true
     replicas: 2
@@ -103,11 +103,11 @@ mimir:
       requests:
         cpu: 100m
         memory: 128Mi
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   store_gateway:
     # -- Total number of replicas for the store-gateway across all availability zones
     # If store_gateway.zoneAwareReplication.enabled=false, this number is taken as is.
@@ -119,39 +119,39 @@ mimir:
       requests:
         cpu: 100m
         memory: 512Mi
-    
+
     # -- Pod Disruption Budget for store-gateway, this will be applied across availability zones to prevent losing redundancy
     podDisruptionBudget:
       maxUnavailable: 1
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   compactor:
     replicas: 1
-  
+
     resources:
       requests:
         cpu: 100m
         memory: 512Mi
-    
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-  
+
   memcached:
     image:
       repository: docker.io/giantswarm/memcached
       tag: 1.6.19-alpine
       pullPolicy: IfNotPresent
-    
+
     podSecurityContext:
       runAsNonRoot: true
       runAsUser: 65534
       seccompProfile:
         type: RuntimeDefault
-  
+
   memcachedExporter:
     # -- Whether memcached metrics should be exported
     enabled: true
@@ -160,34 +160,34 @@ mimir:
       repository: docker.io/giantswarm/memcached-exporter
       tag: v0.11.2
       pullPolicy: IfNotPresent
-  
+
   chunks-cache:
     # -- Specifies whether memcached based chunks-cache should be enabled
     enabled: false
-  
+
   index-cache:
     # -- Specifies whether memcached based index-cache should be enabled
     enabled: false
-  
+
   metadata-cache:
     # -- Specifies whether memcached based metadata-cache should be enabled
     enabled: false
-  
+
   results-cache:
     # -- Specifies whether memcached based results-cache should be enabled
     enabled: false
-  
+
   # -- Setting for the Grafana Rollout Operator https://github.com/grafana/helm-charts/tree/main/charts/rollout-operator
   rollout_operator:
     enabled: false
 
   minio:
     enabled: false
-  
+
   nginx:
     # -- Specifies whether nginx should be enabled
     enabled: false
-  
+
   # -- A reverse proxy deployment that is meant to receive traffic for Mimir or GEM.
   # When enterprise.enabled is true the GEM gateway is deployed. Otherwise, it is an nginx.
   # Options except those under gateway.nginx apply to both versions - nginx and GEM gateway.
@@ -202,7 +202,7 @@ mimir:
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-    
+
     nginx:
       image:
         registry: docker.io
