@@ -4,4 +4,5 @@ chart-dir: ./helm/mimir
 destination: ./build
 ct-config: ./.circleci/ct-config.yaml
 catalog-base-url: https://giantswarm.github.io/giantswarm-catalog/
+## We do not check for the team label because this chart has a complex setup for labels in helpers but the team label is set.
 giantswarm-validator-ignored-checks: "C0001"
