@@ -42,7 +42,7 @@ Params:
 */}}
 {{- define "mimir.labels" -}}
 application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
-{{- if .ctx.Values.enterprise.legacyLabels }}
+{{ if .ctx.Values.enterprise.legacyLabels }}
 {{- if .component -}}
 app: {{ include "mimir.name" .ctx }}-{{ .component }}
 {{- else -}}
@@ -87,7 +87,8 @@ Params:
   rolloutZoneName = rollout zone name (optional)
 */}}
 {{- define "mimir.podLabels" -}}
-{{- if .ctx.Values.enterprise.legacyLabels }}
+application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+{{ if .ctx.Values.enterprise.legacyLabels }}
 {{- if .component -}}
 app: {{ include "mimir.name" .ctx }}-{{ .component }}
 {{- if not .rolloutZoneName }}
