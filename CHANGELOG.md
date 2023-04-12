@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Circleci jobs to push `mimir` to all app collections
+- Values schema in helm chart.
 
 ## [0.1.0] - 2023-04-06
 
