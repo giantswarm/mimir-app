@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Customized chart values
+
 ### Added
 
 - Circleci jobs to push `mimir` to all app collections
