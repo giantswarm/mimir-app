@@ -41,7 +41,7 @@ Params:
   rolloutZoneName = rollout zone name (optional)
 */}}
 {{- define "mimir.labels" -}}
-application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+{{/*application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}*/}}
 {{- if .ctx.Values.enterprise.legacyLabels }}
 {{- if .component -}}
 app: {{ include "mimir.name" .ctx }}-{{ .component }}
