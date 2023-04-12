@@ -1,3 +1,3 @@
 ---
 chart-repos:
-- mimir=https://github.com/grafana/mimir
+- mimir=https://grafana.github.io/helm-charts
