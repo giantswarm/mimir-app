@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-dns
+  namespace: kube-system
+  labels:
+    kubernetes.io/name: "kube-dns"
+    kubernetes.io/cluster-service: "true"
+    parent-app: "mimir"
+spec:
+  selector:
+    k8s-app: coredns
+  clusterIP: 172.31.0.1
+  ports:
+  - name: dns
+    port: 53
+    targetPort: 1053
+    protocol: UDP
+  - name: dns-tcp
+    port: 53
+    targetPort: 1053
+    protocol: TCP
