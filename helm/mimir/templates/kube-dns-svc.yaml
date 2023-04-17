@@ -1,3 +1,6 @@
+# Upstream chart does not support choosing dns service from values.
+# We will contribute a patch upstream to have something like `dnsService` in Loki helm chart (see https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml#L10)
+# but in the meantime we need this service as a workaround
 apiVersion: v1
 kind: Service
 metadata:
