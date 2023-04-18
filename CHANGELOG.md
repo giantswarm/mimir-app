@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Circleci jobs to push `mimir` to all app collections.
 - Values schema in helm chart.
 - Sample config values.
+- kube-dns svc pointing towards coredns for mimir-gateway
 
 ## [0.1.0] - 2023-04-06
 
