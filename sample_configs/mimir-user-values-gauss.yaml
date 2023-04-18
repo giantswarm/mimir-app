@@ -1,0 +1,295 @@
+mimir:
+  nameOverride: ""
+  fullnameOverride: ""
+
+  distributor:
+    replicas: 1
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+  ingester:
+    # -- Total number of replicas for the ingester across all availability zones
+    # If ingester.zoneAwareReplication.enabled=false, this number is taken as is.
+    # Otherwise each zone starts `ceil(replicas / number_of_zones)` number of pods.
+    #   E.g. if 'replicas' is set to 4 and there are 3 zones, then 4/3=1.33 and after rounding up it means 2 pods per zone are started.
+    replicas: 3
+    zoneAwareReplication:
+      enabled: false
+
+    extraArgs:
+      ingester.max-global-series-per-user: 1500000
+
+    statefulSet:
+      enabled: true
+
+    persistentVolume:
+      size: 10Gi
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+    # -- Pod Disruption Budget for ingester, this will be applied across availability zones to prevent losing redundancy
+    podDisruptionBudget:
+      maxUnavailable: 1
+
+  overrides_exporter:
+    enabled: true
+    replicas: 1
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  ruler:
+    enabled: false
+    replicas: 1
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  querier:
+    replicas: 2
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  query_frontend:
+    replicas: 1
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  query_scheduler:
+    enabled: true
+    replicas: 2
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+
+  store_gateway:
+    # -- Total number of replicas for the store-gateway across all availability zones
+    # If store_gateway.zoneAwareReplication.enabled=false, this number is taken as is.
+    # Otherwise each zone starts `ceil(replicas / number_of_zones)` number of pods.
+    #   E.g. if 'replicas' is set to 4 and there are 3 zones, then 4/3=1.33 and after rounding up it means 2 pods per zone are started.
+    replicas: 1
+    zoneAwareReplication:
+      enabled: false
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+    # -- Pod Disruption Budget for store-gateway, this will be applied across availability zones to prevent losing redundancy
+    podDisruptionBudget:
+      maxUnavailable: 1
+
+  compactor:
+    replicas: 1
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+
+  memcachedExporter:
+    # -- Whether memcached metrics should be exported
+    enabled: true
+  
+  mimir:
+    # -- Base config file for Grafana Mimir and Grafana Enterprise Metrics. Contains Helm templates that are evaulated at install/upgrade.
+    # To modify the resulting configuration, either copy and alter 'mimir.config' as a whole or use the 'mimir.structuredConfig' to add and modify certain YAML elements.
+    config: |
+      usage_stats:
+        installation_mode: helm
+      activity_tracker:
+        filepath: /active-query-tracker/activity.log
+      # This configures how the store-gateway synchronizes blocks stored in the bucket. It uses Minio by default for getting started (configured via flags) but this should be changed for production deployments.
+      common:
+        storage:
+          backend: s3
+          s3:
+            endpoint: s3.eu-west-1.amazonaws.com
+            region: eu-west-1
+      blocks_storage:
+        backend: s3
+        s3:
+          bucket_name: gauss-g8s-mimir
+        tsdb:
+          dir: /data/tsdb
+      compactor:
+        compaction_interval: 30m
+        deletion_delay: 2h
+        max_closing_blocks_concurrency: 2
+        max_opening_blocks_concurrency: 4
+        symbols_flushers_concurrency: 4
+        data_dir: "/data"
+        sharding_ring:
+          wait_stability_min_duration: 1m
+      frontend:
+        parallelize_shardable_queries: true
+        {{- if index .Values "results-cache" "enabled" }}
+        results_cache:
+          backend: memcached
+          memcached:
+            timeout: 500ms
+            addresses: {{ include "mimir.resultsCacheAddress" . }}
+            max_item_size: {{ mul (index .Values "results-cache").maxItemMemory 1024 1024 }}
+        cache_results: true
+        {{- end }}
+        {{- if .Values.query_scheduler.enabled }}
+        scheduler_address: {{ template "mimir.fullname" . }}-query-scheduler-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
+        {{- end }}
+      frontend_worker:
+        grpc_client_config:
+          max_send_msg_size: 419430400 # 400MiB
+        {{- if .Values.query_scheduler.enabled }}
+        scheduler_address: {{ template "mimir.fullname" . }}-query-scheduler-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
+        {{- else }}
+        frontend_address: {{ template "mimir.fullname" . }}-query-frontend-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverGrpcListenPort" . }}
+        {{- end }}
+      {{- if and .Values.enterprise.enabled }}
+      gateway:
+        proxy:
+          admin_api:
+            url: http://{{ template "mimir.fullname" . }}-admin-api.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          alertmanager:
+            url: http://{{ template "mimir.fullname" . }}-alertmanager-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          compactor:
+            url: http://{{ template "mimir.fullname" . }}-compactor.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          default:
+            url: http://{{ template "mimir.fullname" . }}-admin-api.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          distributor:
+            url: dns:///{{ template "mimir.fullname" . }}-distributor-headless.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:{{ include "mimir.serverGrpcListenPort" . }}
+          ingester:
+            url: http://{{ template "mimir.fullname" . }}-ingester-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          query_frontend:
+            url: http://{{ template "mimir.fullname" . }}-query-frontend.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          ruler:
+            url: http://{{ template "mimir.fullname" . }}-ruler.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          store_gateway:
+            url: http://{{ template "mimir.fullname" . }}-store-gateway-headless.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          {{- if and .Values.enterprise.enabled .Values.graphite.enabled }}
+          graphite_write_proxy:
+            url: http://{{ template "mimir.fullname" . }}-graphite-write-proxy.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          graphite_querier:
+            url: http://{{ template "mimir.fullname" . }}-graphite-querier.{{ .Release.Namespace }}.svc:{{ include "mimir.serverHttpListenPort" . }}
+          {{- end}}
+      {{- end }}
+      ingester:
+        ring:
+          final_sleep: 0s
+          num_tokens: 512
+          tokens_file_path: /data/tokens
+          unregister_on_shutdown: false
+          {{- if .Values.ingester.zoneAwareReplication.enabled }}
+          zone_awareness_enabled: true
+          {{- end }}
+      ingester_client:
+        grpc_client_config:
+          max_recv_msg_size: 104857600
+          max_send_msg_size: 104857600
+      limits:
+        # Limit queries to 500 days. You can override this on a per-tenant basis.
+        max_total_query_length: 12000h
+        # Adjust max query parallelism to 16x sharding, without sharding we can run 15d queries fully in parallel.
+        # With sharding we can further shard each day another 16 times. 15 days * 16 shards = 240 subqueries.
+        max_query_parallelism: 240
+        # Avoid caching results newer than 10m because some samples can be delayed
+        # This presents caching incomplete results
+        max_cache_freshness: 10m
+      memberlist:
+        abort_if_cluster_join_fails: false
+        compression_enabled: false
+        join_members:
+        - dns+{{ include "mimir.fullname" . }}-gossip-ring.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}:{{ include "mimir.memberlistBindPort" . }}
+      querier:
+        # With query sharding we run more but smaller queries. We must strike a balance
+        # which allows us to process more sharded queries in parallel when requested, but not overload
+        # queriers during non-sharded queries.
+        max_concurrent: 16
+      query_scheduler:
+        # Increase from default of 100 to account for queries created by query sharding
+        max_outstanding_requests_per_tenant: 800
+      ruler:
+        alertmanager_url: dnssrvnoa+http://_http-metrics._tcp.{{ template "mimir.fullname" . }}-alertmanager-headless.{{ .Release.Namespace }}.svc.{{ .Values.global.clusterDomain }}/alertmanager
+        enable_api: true
+        rule_path: /data
+      ruler_storage:
+        backend: s3
+        s3:
+          bucket_name: {{ include "mimir.minioBucketPrefix" . }}-ruler
+      runtime_config:
+        file: /var/{{ include "mimir.name" . }}/runtime.yaml
+      server:
+        grpc_server_max_concurrent_streams: 1000
+        grpc_server_max_connection_age: 2m
+        grpc_server_max_connection_age_grace: 5m
+        grpc_server_max_connection_idle: 1m
+      store_gateway:
+        sharding_ring:
+          wait_stability_min_duration: 1m
+          {{- if .Values.store_gateway.zoneAwareReplication.enabled }}
+          kvstore:
+            prefix: multi-zone/
+          {{- end }}
+          tokens_file_path: /data/tokens
+          unregister_on_shutdown: false
+          {{- if .Values.store_gateway.zoneAwareReplication.enabled }}
+          zone_awareness_enabled: true
+          {{- end }}
+
+  # -- A reverse proxy deployment that is meant to receive traffic for Mimir or GEM.
+  # When enterprise.enabled is true the GEM gateway is deployed. Otherwise, it is an nginx.
+  # Options except those under gateway.nginx apply to both versions - nginx and GEM gateway.
+  gateway:
+    # -- Annotations Deployment Pods
+    podAnnotations:
+      # The annotation below is `kiam` specific
+      # and means that pods having it can use this IAM Role for S3 access
+      iam.amazonaws.com/role: gs-mimir-storage-m2h60-role
+    
+    ingress:
+      enabled: false
+      # -- Ingress Class Name. MAY be required for Kubernetes versions >= 1.18
+      ingressClassName: nginx
+      # -- Annotations for the Ingress
+      annotations:
+        # this annotation means cert-manager will automatically create a ACME certificate
+        cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+      hosts:
+        # host name assigned to your loki instance (must be registered in DNS)
+        - host: mimir.m2h60.k8s.gauss.eu-west-1.aws.gigantic.io
+          paths:
+            - path: /
+              pathType: ImplementationSpecific
+      tls:
+        - hosts:
+            # host name assigned to your loki instance (must be registered in DNS)
+            - mimir.m2h60.k8s.gauss.eu-west-1.aws.gigantic.io
+          secretName: mimir-ingress-cert
+
+    nginx:
+      # -- Basic auth configuration
+      basicAuth:
+        # -- Enables basic authentication for nginx
+        enabled: false
+        # -- The basic auth username for nginx
+        username: Tenant1
+        # -- The basic auth password for nginx
+        password: 1tnaneT
+
