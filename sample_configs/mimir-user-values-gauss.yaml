@@ -127,6 +127,9 @@ mimir:
             region: eu-west-1
       blocks_storage:
         backend: s3
+        bucket_store:
+          max_chunk_pool_bytes: 12884901888 # 12GiB
+          sync_dir: /data/tsdb-sync
         s3:
           bucket_name: gauss-g8s-mimir
         tsdb:
