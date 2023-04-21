@@ -296,3 +296,6 @@ mimir:
         # -- The basic auth password for nginx
         password: 1tnaneT
 
+  metaMonitoring:
+    serviceMonitor:
+      enabled: true
