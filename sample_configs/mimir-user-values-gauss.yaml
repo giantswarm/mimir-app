@@ -10,6 +10,9 @@ mimir:
         cpu: 100m
         memory: 512Mi
 
+    extraArgs:
+      validation.max-label-names-per-series: 40
+
   ingester:
     # -- Total number of replicas for the ingester across all availability zones
     # If ingester.zoneAwareReplication.enabled=false, this number is taken as is.
@@ -21,6 +24,8 @@ mimir:
 
     extraArgs:
       ingester.max-global-series-per-user: 1500000
+      distributor.ingestion-rate-limit: 20000
+      distributor.ingestion-burst-size: 400000
 
     statefulSet:
       enabled: true
@@ -295,7 +300,8 @@ mimir:
         username: Tenant1
         # -- The basic auth password for nginx
         password: 1tnaneT
-
+        
   metaMonitoring:
     serviceMonitor:
       enabled: true
+
