@@ -108,6 +108,8 @@ Default `ingester.max-global-series-per-user=150000` results in rate-limiting.
 We have to drasticaly increase it.
 
 Default `max-label-names-per-series=30` is a bit too short.
+- `distributor.ingestion-rate-limit` defaults to 10000 items/s
+- `distributor.ingestion-burst-size` defaults to 200000
 
 In `.mimir.ingester`:
 ```
@@ -115,8 +117,10 @@ extraArgs:
   ingester.max-global-series-per-user: 1500000
 ```
 
-For max-label-names-per-series, we still have to define which component should have this setting:
+In `.mimir.distributor`:
 ```
 extraArgs:
-  - validation.max-label-names-per-series=40
+  validation.max-label-names-per-series: 40
+  distributor.ingestion-rate-limit: 20000
+  distributor.ingestion-burst-size: 400000
 ```
