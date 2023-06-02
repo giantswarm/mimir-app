@@ -483,9 +483,14 @@
                             "type": "integer"
                         },
                         "extraArgs": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
+                            "type": "object",
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
                             }
                         },
                         "resources": {
