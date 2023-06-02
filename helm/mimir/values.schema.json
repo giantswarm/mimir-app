@@ -482,6 +482,17 @@
                         "replicas": {
                             "type": "integer"
                         },
+                        "extraArgs": {
+                            "type": "object",
+                            "properties": {
+                                "key": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                        },
                         "resources": {
                             "type": "object",
                             "properties": {
