@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgraded the chart to 5.1.0 and mimir to 2.10.0
+
 ## [0.2.0] - 2023-06-02
 
 ### Added
@@ -14,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `ruler.extraArgs` to the values to allow setting arguments to the ruler component.
 
 ## [0.1.1] - 2023-06-01
+
+### Changed
 
 - Upgraded the chart to 4.5.0 and mimir to 2.8.0
 
