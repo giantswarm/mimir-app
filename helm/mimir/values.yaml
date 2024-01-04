@@ -4,7 +4,7 @@ mimir:
 
   image:
     repository: docker.io/giantswarm/mimir
-    tag: 2.10.4
+    tag: 2.11.0
     pullPolicy: IfNotPresent
 
   alertmanager:
