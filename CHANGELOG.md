@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Upgraded mimir to 2.11.0
 
+### Added
+
+- Add `mimir.enabled` condition for chart dependency.
+
 ## [0.2.0] - 2023-06-02
 
 ### Added
