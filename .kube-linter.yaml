@@ -6,3 +6,4 @@ checks:
   - "run-as-non-root"
   - "latest-tag"
   - "no-anti-affinity"
+  - "non-existent-service-account"
