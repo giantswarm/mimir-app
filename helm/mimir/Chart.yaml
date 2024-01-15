@@ -14,6 +14,7 @@ dependencies:
     alias: mimir
     version: 5.2.0
     repository: https://grafana.github.io/helm-charts
+    condition: mimir.enabled
 version: 0.2.0
 annotations:
   application.giantswarm.io/team: atlas

@@ -95,6 +95,9 @@
                         }
                     }
                 },
+                "enabled": {
+                    "type": "boolean"
+                },
                 "fullnameOverride": {
                     "type": "string"
                 },
