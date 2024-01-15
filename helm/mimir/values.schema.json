@@ -95,6 +95,9 @@
                         }
                     }
                 },
+                "enabled": {
+                    "type": "boolean"
+                },
                 "fullnameOverride": {
                     "type": "string"
                 },
@@ -479,19 +482,11 @@
                         "enabled": {
                             "type": "boolean"
                         },
+                        "extraArgs": {
+                            "type": "object"
+                        },
                         "replicas": {
                             "type": "integer"
-                        },
-                        "extraArgs": {
-                            "type": "object",
-                            "properties": {
-                                "key": {
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "type": "string"
-                                }
-                            }
                         },
                         "resources": {
                             "type": "object",
