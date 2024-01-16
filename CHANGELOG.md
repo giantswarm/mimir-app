@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Removed unnecessary dns service as it is now in the upstream chart.
+
 ## [0.3.0] - 2024-01-15
 
 ### Changed
