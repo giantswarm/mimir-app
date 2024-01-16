@@ -1,3 +1,7 @@
+global:
+  # -- configures DNS service name
+  dnsService: "coredns"
+
 mimir:
   # You can make the whole chart ineffective by setting this one to "false"
   enabled: true
