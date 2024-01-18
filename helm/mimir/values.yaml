@@ -3,7 +3,7 @@ global:
   dnsService: "coredns"
 
 psp:
-  enabled: true
+  enabled: false
 
 # the below fields are only used to avoid context errors from helm
 serviceAccount:
