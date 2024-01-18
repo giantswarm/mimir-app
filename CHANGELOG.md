@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add an additional template for capi related rbac authotizations.
+
 ## [0.3.1] - 2024-01-16
 
 ### Fixed

@@ -2,6 +2,14 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "global": {
+            "type": "object",
+            "properties": {
+                "dnsService": {
+                    "type": "string"
+                }
+            }
+        },
         "mimir": {
             "type": "object",
             "properties": {
@@ -563,6 +571,14 @@
                             }
                         }
                     }
+                }
+            }
+        },
+        "psp": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
                 }
             }
         }
