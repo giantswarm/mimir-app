@@ -2,6 +2,15 @@ global:
   # -- configures DNS service name
   dnsService: "coredns"
 
+psp:
+  enabled: true
+
+# the below fields are only used to avoid context errors from helm
+serviceAccount:
+  create: true
+enterprise:
+  enabled: false
+
 mimir:
   # You can make the whole chart ineffective by setting this one to "false"
   enabled: true
