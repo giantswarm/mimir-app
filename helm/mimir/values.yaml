@@ -19,7 +19,7 @@ mimir:
   fullnameOverride: ""
 
   image:
-    repository: docker.io/giantswarm/mimir
+    repository: gsoci.azurecr.io/giantswarm/mimir
     tag: 2.11.0
     pullPolicy: IfNotPresent
 
@@ -161,7 +161,7 @@ mimir:
 
   memcached:
     image:
-      repository: docker.io/giantswarm/memcached
+      repository: gsoci.azurecr.io/giantswarm/memcached
       tag: 1.6.22-alpine
       pullPolicy: IfNotPresent
 
@@ -176,7 +176,7 @@ mimir:
     enabled: true
 
     image:
-      repository: docker.io/giantswarm/memcached-exporter
+      repository: gsoci.azurecr.io/giantswarm/memcached-exporter
       tag: v0.13.0
       pullPolicy: IfNotPresent
 
@@ -224,6 +224,6 @@ mimir:
 
     nginx:
       image:
-        registry: docker.io
+        registry: gsoci.azurecr.io
         repository: giantswarm/nginx-unprivileged
         tag: 1.24-alpine

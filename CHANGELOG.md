@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Change registry from `docker.io` to `gsoci.azurecr.io`
+
 ## [0.4.0] - 2024-01-24
 
 ### Added
 
-- Add an additional template for capi related rbac authotizations.
+- Add an additional template for capi related rbac authorizations.
 
 ### Changed
 
