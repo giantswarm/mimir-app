@@ -7,14 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.1] - 2023-06-01
+### Changed
 
-## [0.1.1] - 2023-06-01
+- Change registry from `docker.io` to `gsoci.azurecr.io`
+- Add condition for additional rbac.
 
-- Upgraded the chart to 4.5.0 and mimir to 2.8.0
+## [0.4.0] - 2024-01-24
+
+### Added
+
+- Add an additional template for capi related rbac authorizations.
 
 ### Changed
 
+- Upgrade mimir chart to 5.2.1
+
+## [0.3.1] - 2024-01-16
+
+### Fixed
+
+- Removed unnecessary dns service as it is now in the upstream chart.
+
+## [0.3.0] - 2024-01-15
+
+### Changed
+
+- Upgraded mimir to 2.11.0
+
+### Added
+
+- Add `mimir.enabled` condition for chart dependency.
+
+## [0.2.0] - 2023-06-02
+
+### Added
+
+- Add `ruler.extraArgs` to the values to allow setting arguments to the ruler component.
+
+## [0.1.1] - 2023-06-01
+
+### Changed
+
+- Upgraded the chart to 4.5.0 and mimir to 2.8.0
 - Customized chart values.
 
 ### Added
@@ -31,7 +65,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.1.1...HEAD
-[0.1.1]: https://github.com/giantswarm/mimir-app/compare/v0.1.1...v0.1.1
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/giantswarm/mimir-app/compare/v0.3.1...v0.4.0
+[0.3.1]: https://github.com/giantswarm/mimir-app/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/giantswarm/mimir-app/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/giantswarm/mimir-app/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/giantswarm/mimir-app/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/giantswarm/mimir-app/releases/tag/v0.1.0

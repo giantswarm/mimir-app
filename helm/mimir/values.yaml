@@ -1,10 +1,26 @@
+global:
+  # -- configures DNS service name
+  dnsService: "coredns"
+
+psp:
+  enabled: false
+
+# the below fields are only used to avoid context errors from helm
+serviceAccount:
+  create: true
+enterprise:
+  enabled: false
+
 mimir:
+  # You can make the whole chart ineffective by setting this one to "false"
+  enabled: true
+
   nameOverride: ""
   fullnameOverride: ""
 
   image:
-    repository: docker.io/giantswarm/mimir
-    tag: 2.7.1
+    repository: gsoci.azurecr.io/giantswarm/mimir
+    tag: 2.11.0
     pullPolicy: IfNotPresent
 
   alertmanager:
@@ -61,6 +77,9 @@ mimir:
   ruler:
     enabled: true
     replicas: 1
+    # Additional ruler container arguments, e.g. log level (debug, info, warn, error)
+    extraArgs: {}
+      # log.level: debug
 
     resources:
       requests:
@@ -142,8 +161,8 @@ mimir:
 
   memcached:
     image:
-      repository: docker.io/giantswarm/memcached
-      tag: 1.6.19-alpine
+      repository: gsoci.azurecr.io/giantswarm/memcached
+      tag: 1.6.22-alpine
       pullPolicy: IfNotPresent
 
     podSecurityContext:
@@ -157,8 +176,8 @@ mimir:
     enabled: true
 
     image:
-      repository: docker.io/giantswarm/memcached-exporter
-      tag: v0.11.2
+      repository: gsoci.azurecr.io/giantswarm/memcached-exporter
+      tag: v0.13.0
       pullPolicy: IfNotPresent
 
   chunks-cache:
@@ -205,6 +224,6 @@ mimir:
 
     nginx:
       image:
-        registry: docker.io
+        registry: gsoci.azurecr.io
         repository: giantswarm/nginx-unprivileged
-        tag: 1.22-alpine
+        tag: 1.24-alpine
