@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgrade to latest weekly build to be able to use our upstream fixes (custom service account for the ruler, psp fix)
+- Upgrade to latest weekly build to be able to use our upstream fixes (custom service account for the ruler, psp fix).
+- Remove customized rbac and use upstream one.
 
 ## [0.4.1] - 2024-01-25
 
