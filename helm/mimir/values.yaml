@@ -2,9 +2,6 @@ global:
   # -- configures DNS service name
   dnsService: "coredns"
 
-psp:
-  enabled: false
-
 # the below fields are only used to avoid context errors from helm
 serviceAccount:
   create: true
@@ -22,6 +19,15 @@ mimir:
     repository: gsoci.azurecr.io/giantswarm/mimir
     tag: 2.11.0
     pullPolicy: IfNotPresent
+
+  rbac:
+    forcePSPOnKubernetes124: true
+    podSecurityPolicy:
+      readOnlyRootFilesystem: false
+      additionalVolumes:
+        - hostPath
+        - projected
+
 
   alertmanager:
     enabled: false
