@@ -28,7 +28,6 @@ mimir:
         - hostPath
         - projected
 
-
   alertmanager:
     enabled: false
 
