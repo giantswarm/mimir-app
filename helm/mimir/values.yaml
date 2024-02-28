@@ -28,6 +28,11 @@ mimir:
         - hostPath
         - projected
 
+  metaMonitoring:
+    serviceMonitor:
+      # We need to se this value to have the mixin rules work.
+      interval: 30s
+
   alertmanager:
     enabled: false
 
