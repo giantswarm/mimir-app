@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade mimir chart to 5.3.0 and mimir to 2.12.0
+
 ## [0.4.3] - 2024-02-28
 
 ### Changed
