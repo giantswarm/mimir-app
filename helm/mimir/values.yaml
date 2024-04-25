@@ -225,6 +225,11 @@ mimir:
     # Toggle this to have it deployed for non-enterprise installations too.
     enabledNonEnterprise: true
 
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+
     # -- Number of replicas for the Deployment
     replicas: 1
 
