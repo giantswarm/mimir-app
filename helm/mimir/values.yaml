@@ -266,6 +266,13 @@ mimir:
         cpu: 100m
         memory: 100Mi
 
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 3
+      targetCPUUtilizationPercentage: 90
+      targetMemoryUtilizationPercentage: 90
+
     # -- Number of replicas for the Deployment
     replicas: 1
 
