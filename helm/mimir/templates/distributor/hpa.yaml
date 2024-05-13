@@ -1,4 +1,4 @@
-{{- if and .Values.hpa.distributor.enabled }}
+{{- if and .Values.mimir.enabled .Values.hpa.distributor.enabled }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:

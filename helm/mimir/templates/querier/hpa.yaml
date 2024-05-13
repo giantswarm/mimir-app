@@ -1,4 +1,4 @@
-{{- if and .Values.hpa.querier.enabled }}
+{{- if and .Values.mimir.enabled .Values.hpa.querier.enabled }}
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
