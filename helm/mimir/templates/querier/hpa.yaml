@@ -1,0 +1,38 @@
+{{- if and .Values.mimir.enabled .Values.hpa.querier.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "mimir.resourceName" (dict "ctx" . "component" "querier") }}
+  namespace : {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "mimir.labels" (dict "ctx" . "component" "querier") | nindent 4 }}
+spec:
+  scaleTargetRef:
+    metrics: []
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "mimir.resourceName" (dict "ctx" . "component" "querier") }}
+  minReplicas: {{ .Values.hpa.querier.minReplicas }}
+  maxReplicas: {{ .Values.hpa.querier.maxReplicas }}
+  {{- with .Values.hpa.querier.behavior }}
+  behavior:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  metrics:
+  {{- with .Values.hpa.querier.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ . }}
+  {{- end }}
+  {{- with .Values.hpa.querier.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ . }}
+  {{- end }}
+{{- end }}
