@@ -18,6 +18,133 @@
                 }
             }
         },
+        "hpa": {
+            "type": "object",
+            "properties": {
+                "distributor": {
+                    "type": "object",
+                    "properties": {
+                        "behavior": {
+                            "type": "object",
+                            "properties": {
+                                "scaleDown": {
+                                    "type": "object",
+                                    "properties": {
+                                        "policies": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "periodSeconds": {
+                                                        "type": "integer"
+                                                    },
+                                                    "type": {
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "maxReplicas": {
+                            "type": "integer"
+                        },
+                        "minReplicas": {
+                            "type": "integer"
+                        },
+                        "targetCPUUtilizationPercentage": {
+                            "type": "integer"
+                        },
+                        "targetMemoryUtilizationPercentage": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "querier": {
+                    "type": "object",
+                    "properties": {
+                        "behavior": {
+                            "type": "object",
+                            "properties": {
+                                "scaleDown": {
+                                    "type": "object",
+                                    "properties": {
+                                        "policies": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "periodSeconds": {
+                                                        "type": "integer"
+                                                    },
+                                                    "type": {
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "stabilizationWindowSeconds": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "scaleUp": {
+                                    "type": "object",
+                                    "properties": {
+                                        "policies": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "periodSeconds": {
+                                                        "type": "integer"
+                                                    },
+                                                    "type": {
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "type": "integer"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "stabilizationWindowSeconds": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "maxReplicas": {
+                            "type": "integer"
+                        },
+                        "minReplicas": {
+                            "type": "integer"
+                        },
+                        "targetCPUUtilizationPercentage": {
+                            "type": "integer"
+                        },
+                        "targetMemoryUtilizationPercentage": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
         "mimir": {
             "type": "object",
             "properties": {
