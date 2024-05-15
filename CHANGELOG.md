@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add ingress secret resource template for "ingress only" basic auth.
+
 ## [0.6.0] - 2024-05-13
 
 ### Changed

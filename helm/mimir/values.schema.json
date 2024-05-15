@@ -270,6 +270,28 @@
                         "enabledNonEnterprise": {
                             "type": "boolean"
                         },
+                        "ingress": {
+                            "type": "object",
+                            "properties": {
+                                "basicAuth": {
+                                    "type": "object",
+                                    "properties": {
+                                        "enabled": {
+                                            "type": "boolean"
+                                        },
+                                        "htpasswd": {
+                                            "type": "string"
+                                        },
+                                        "password": {
+                                            "type": "string"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
                         "nginx": {
                             "type": "object",
                             "properties": {
