@@ -293,3 +293,7 @@ mimir:
         registry: gsoci.azurecr.io
         repository: giantswarm/nginx-unprivileged
         tag: 1.26-alpine
+
+      config:
+        serverSnippet: |
+          client_max_body_size 50m;

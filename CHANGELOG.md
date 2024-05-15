@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add ingress secret resource template for "ingress only" basic auth.
 
+### Changed
+
+- Specify `client_max_body_size` for the gateway config.
+
 ## [0.6.0] - 2024-05-13
 
 ### Changed

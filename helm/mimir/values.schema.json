@@ -295,6 +295,14 @@
                         "nginx": {
                             "type": "object",
                             "properties": {
+                                "config": {
+                                    "type": "object",
+                                    "properties": {
+                                        "serverSnippet": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
                                 "image": {
                                     "type": "object",
                                     "properties": {
