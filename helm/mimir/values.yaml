@@ -292,4 +292,4 @@ mimir:
       image:
         registry: gsoci.azurecr.io
         repository: giantswarm/nginx-unprivileged
-        tag: 1.26-alpine
+        tag: 1.27-alpine
