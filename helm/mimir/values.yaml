@@ -280,14 +280,6 @@ mimir:
       seccompProfile:
         type: RuntimeDefault
 
-    ingress:
-      basicAuth:
-        enabled: false
-        username: ""
-        password: ""
-        htpasswd: >-
-          {{ htpasswd (required "'mimir.gateway.ingress.basicAuth.username' is required" .Values.mimir.gateway.ingress.basicAuth.username) (required "'mimir.gateway.ingress.basicAuth.password' is required" .Values.mimir.gateway.ingress.basicAuth.password) }}
-
     nginx:
       image:
         registry: gsoci.azurecr.io
