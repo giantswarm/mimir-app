@@ -348,6 +348,14 @@
                 "ingester": {
                     "type": "object",
                     "properties": {
+                        "podAnnotations": {
+                            "type": "object",
+                            "properties": {
+                                "downscaler/exclude": {
+                                    "type": "boolean"
+                                }
+                            }
+                        },
                         "podDisruptionBudget": {
                             "type": "object",
                             "properties": {

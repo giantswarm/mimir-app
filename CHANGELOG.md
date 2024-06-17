@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Push to `capz-app-collection`
+- Push to `capz-app-collection`.
+- Add annotation to the ingester to exclude it from the `kube-downscaler` scope.
 
 ## [0.6.1] - 2024-06-06
 
