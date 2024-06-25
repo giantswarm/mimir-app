@@ -96,7 +96,7 @@ mimir:
 
     resources:
       requests:
-        cpu: 1
+        cpu: "1"
         memory: 8Gi
 
     # -- Pod Disruption Budget for ingester, this will be applied across availability zones to prevent losing redundancy

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- fix schema for `mimir.ingester.resources.requests.cpu` property.
+
 ## [0.6.2] - 2024-06-25
 
 ### Fixed
