@@ -8,7 +8,6 @@ metadata:
     {{- include "mimir.labels" (dict "ctx" . "component" "querier") | nindent 4 }}
 spec:
   scaleTargetRef:
-    metrics: []
     apiVersion: apps/v1
     kind: Deployment
     name: {{ include "mimir.resourceName" (dict "ctx" . "component" "querier") }}

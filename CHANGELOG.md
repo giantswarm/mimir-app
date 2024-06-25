@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.6.2] - 2024-06-25
 
+### Fixed
+
+- fix querier HPA by removing `scaleTargetRef.metrics` property.
+
 ### Changed
 
 - Push to `capz-app-collection`
