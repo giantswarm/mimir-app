@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Push mimir to onprem collections.
+- Add PVC retention policy for `compactor` and `store-gateway`.
 
 ## [0.6.3] - 2024-06-25
 
@@ -26,7 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Push to `capz-app-collection`
-- Add PVC retention policy for `compactor` and `store-gateway`.
 
 ## [0.6.1] - 2024-06-06
 
