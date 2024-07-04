@@ -167,6 +167,20 @@
                 "compactor": {
                     "type": "object",
                     "properties": {
+                        "persistentVolume": {
+                            "type": "object",
+                            "properties": {
+                                "enableRetentionPolicy": {
+                                    "type": "boolean"
+                                },
+                                "whenDeleted": {
+                                    "type": "string"
+                                },
+                                "whenScaled": {
+                                    "type": "string"
+                                }
+                            }
+                        },
                         "replicas": {
                             "type": "integer"
                         },
@@ -736,6 +750,20 @@
                 "store_gateway": {
                     "type": "object",
                     "properties": {
+                        "persistentVolume": {
+                            "type": "object",
+                            "properties": {
+                                "enableRetentionPolicy": {
+                                    "type": "boolean"
+                                },
+                                "whenDeleted": {
+                                    "type": "string"
+                                },
+                                "whenScaled": {
+                                    "type": "string"
+                                }
+                            }
+                        },
                         "podDisruptionBudget": {
                             "type": "object",
                             "properties": {
