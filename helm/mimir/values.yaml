@@ -192,6 +192,11 @@ mimir:
     securityContext:
       seccompProfile:
         type: RuntimeDefault
+    
+    persistentVolume:
+      enableRetentionPolicy: true
+      whenDeleted: Retain
+      whenScaled: Delete
 
   compactor:
     replicas: 1
@@ -204,6 +209,11 @@ mimir:
     securityContext:
       seccompProfile:
         type: RuntimeDefault
+    
+    persistentVolume:
+      enableRetentionPolicy: true
+      whenDeleted: Retain
+      whenScaled: Delete
 
   memcached:
     image:
