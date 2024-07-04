@@ -192,7 +192,7 @@ mimir:
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-    
+
     persistentVolume:
       enableRetentionPolicy: true
       whenDeleted: Retain
@@ -209,7 +209,7 @@ mimir:
     securityContext:
       seccompProfile:
         type: RuntimeDefault
-    
+
     persistentVolume:
       enableRetentionPolicy: true
       whenDeleted: Retain
