@@ -370,6 +370,17 @@
                                 }
                             }
                         },
+                        "priorityClass": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "value": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
                         "replicas": {
                             "type": "integer"
                         },

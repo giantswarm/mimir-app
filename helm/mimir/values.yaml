@@ -91,6 +91,10 @@ mimir:
     #   E.g. if 'replicas' is set to 4 and there are 3 zones, then 4/3=1.33 and after rounding up it means 2 pods per zone are started.
     replicas: 3
 
+    priorityClass:
+      enabled: true
+      value: 500000000
+
     statefulSet:
       enabled: true
 

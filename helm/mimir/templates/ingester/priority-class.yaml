@@ -1,0 +1,11 @@
+{{- if .Values.mimir.ingester.priorityClass.enabled }}
+apiVersion: scheduling.k8s.io/v1
+description: High-priority class for mimir-ingester pods only.
+kind: PriorityClass
+metadata:
+  labels:
+    {{- include "mimir.labels" (dict "ctx" . "component" "ingester") | nindent 4 }}
+  name: mimir-ingester
+preemptionPolicy: PreemptLowerPriority
+value: {{ .Values.mimir.ingester.priorityClass.value }}
+{{- end }}
