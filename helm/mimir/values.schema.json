@@ -370,17 +370,6 @@
                                 }
                             }
                         },
-                        "priorityClass": {
-                            "type": "object",
-                            "properties": {
-                                "enabled": {
-                                    "type": "boolean"
-                                },
-                                "value": {
-                                    "type": "integer"
-                                }
-                            }
-                        },
                         "priorityClassName": {
                             "type": "string"
                         },
@@ -563,6 +552,17 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                },
+                "priorityClass": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "value": {
+                            "type": "integer"
                         }
                     }
                 },
