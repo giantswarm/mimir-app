@@ -95,6 +95,8 @@ mimir:
       enabled: true
       value: 500000000
 
+    priorityClassName: mimir-ingester
+
     statefulSet:
       enabled: true
 

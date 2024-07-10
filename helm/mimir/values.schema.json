@@ -381,6 +381,9 @@
                                 }
                             }
                         },
+                        "priorityClassName": {
+                            "type": "string"
+                        },
                         "replicas": {
                             "type": "integer"
                         },
