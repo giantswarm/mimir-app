@@ -68,10 +68,13 @@ mimir:
     serviceMonitor:
       # We need to se this value to have the mixin rules work.
       interval: 30s
-  
+
   priorityClass:
     enabled: true
+    create: true
+    # The value is only relevant when using the custom priority class.
     value: 500000000
+    name: mimir
 
   alertmanager:
     enabled: false
@@ -95,7 +98,8 @@ mimir:
     #   E.g. if 'replicas' is set to 4 and there are 3 zones, then 4/3=1.33 and after rounding up it means 2 pods per zone are started.
     replicas: 3
 
-    priorityClassName: mimir-ingester
+    # -- If mimir.priorityClass.create is set to true, the following field must match mimir.priorityClass.name.
+    priorityClassName: mimir
 
     statefulSet:
       enabled: true

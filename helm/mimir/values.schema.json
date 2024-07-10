@@ -558,8 +558,14 @@
                 "priorityClass": {
                     "type": "object",
                     "properties": {
+                        "create": {
+                            "type": "boolean"
+                        },
                         "enabled": {
                             "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
                         },
                         "value": {
                             "type": "integer"
