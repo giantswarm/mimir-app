@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.8.1] - 2024-07-11
 
+- Deploy `PriorityClass` manifest only if `mimir` is enabled.
+
 ## [0.8.0] - 2024-07-10
 
 ### Added
