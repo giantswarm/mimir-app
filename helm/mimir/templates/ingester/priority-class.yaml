@@ -1,4 +1,4 @@
-{{- if and .Values.mimir.priorityClass.enabled .Values.mimir.priorityClass.create }}
+{{- if and .Values.mimir.enabled .Values.mimir.priorityClass.enabled .Values.mimir.priorityClass.create }}
 apiVersion: scheduling.k8s.io/v1
 description: High-priority class for mimir-ingester pods only.
 kind: PriorityClass
