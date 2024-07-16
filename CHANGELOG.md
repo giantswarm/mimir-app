@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgraded the chart to 5.4.0 and mimir to 2.13.0
+
 ## [0.8.1] - 2024-07-11
 
 - Deploy `PriorityClass` manifest only if `mimir` is enabled.
