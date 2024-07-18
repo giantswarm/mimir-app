@@ -11,7 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add vpa resource template for the ingester.
 
+## [0.10.0] - 2024-07-18
+
+### Added
+
+- Add datasource configmap template.
+
+## [0.9.0] - 2024-07-16
+
+### Changed
+
+- Upgraded the chart to 5.4.0 and mimir to 2.13.0
+
 ## [0.8.1] - 2024-07-11
+
+### Fixed
 
 - Deploy `PriorityClass` manifest only if `mimir` is enabled.
 
@@ -137,7 +151,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.8.1...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/giantswarm/mimir-app/compare/v0.9.0...v0.10.0
+[0.9.0]: https://github.com/giantswarm/mimir-app/compare/v0.8.1...v0.9.0
 [0.8.1]: https://github.com/giantswarm/mimir-app/compare/v0.8.0...v0.8.1
 [0.8.0]: https://github.com/giantswarm/mimir-app/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/giantswarm/mimir-app/compare/v0.6.3...v0.7.0
