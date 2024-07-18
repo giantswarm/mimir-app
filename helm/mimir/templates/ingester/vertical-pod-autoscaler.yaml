@@ -1,0 +1,27 @@
+{{- if and .Values.mimir.enabled .Values.mimir.ingester.verticalAutoscaling.enabled }}
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: mimir-ingester
+  namespace: mimir
+  labels:
+    {{- include "mimir.labels" (dict "ctx" . "component" "ingester") | nindent 4 }}
+spec:
+  resourcePolicy:
+    containerPolicies:
+    - containerName: ingester
+      controlledValues: RequestsAndLimits
+      minAllowed:
+        cpu: {{ .Values.mimir.ingester.verticalAutoscaling.minAllowed.cpu }}
+        memory: {{ .Values.mimir.ingester.verticalAutoscaling.minAllowed.memory }}
+      maxAllowed:
+        cpu: {{ .Values.mimir.ingester.verticalAutoscaling.maxAllowed.cpu }}
+        memory: {{ .Values.mimir.ingester.verticalAutoscaling.maxAllowed.memory }}
+      mode: Auto
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: {{ include "mimir.resourceName" (dict "ctx" . "component" "ingester" "memberlist" true) }}
+  updatePolicy:
+    updateMode: Auto
+{{- end }}
