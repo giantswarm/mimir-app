@@ -29,7 +29,7 @@ data:
       jsonData:
       httpMethod: "POST"
       prometheusType: mimir
-      mimirVersion: 2.12.0
+      mimirVersion: {{ .Values.mimir.image.tag }}
       # Set the prometheus scrape interval of 60s to fix https://github.com/giantswarm/giantswarm/issues/29865
       timeInterval: 60s
       cacheLevel: none
