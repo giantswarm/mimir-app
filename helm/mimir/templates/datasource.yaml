@@ -18,19 +18,19 @@ data:
     apiVersion: 1
     datasources:
     - name: Mimir
-        type: prometheus
-        uid: mimir
-        url: http://mimir-gateway.{{ .Release.Namespace }}.svc/prometheus
-        access: proxy
-        basicAuth: false
-        isDefault: {{ .Values.mimir.enabled }}
-        # The jsonData field isn't case-sensitive so even with a wrong one the datasource will work.
-        # However it might become handy in the future for potential specific needs.
-        jsonData:
-        httpMethod: "POST"
-        prometheusType: mimir
-        mimirVersion: 2.12.0
-        # Set the prometheus scrape interval of 60s to fix https://github.com/giantswarm/giantswarm/issues/29865
-        timeInterval: 60s
-        cacheLevel: none
+      type: prometheus
+      uid: mimir
+      url: http://mimir-gateway.{{ .Release.Namespace }}.svc/prometheus
+      access: proxy
+      basicAuth: false
+      isDefault: {{ .Values.mimir.enabled }}
+      # The jsonData field isn't case-sensitive so even with a wrong one the datasource will work.
+      # However it might become handy in the future for potential specific needs.
+      jsonData:
+      httpMethod: "POST"
+      prometheusType: mimir
+      mimirVersion: 2.12.0
+      # Set the prometheus scrape interval of 60s to fix https://github.com/giantswarm/giantswarm/issues/29865
+      timeInterval: 60s
+      cacheLevel: none
 {{- end }}
