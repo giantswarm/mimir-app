@@ -24,6 +24,14 @@
                 "distributor": {
                     "type": "object",
                     "properties": {
+                        "additionalAnnotations": {
+                            "type": "object",
+                            "properties": {
+                                "downscaler/exclude": {
+                                    "type": "string"
+                                }
+                            }
+                        },
                         "behavior": {
                             "type": "object",
                             "properties": {
@@ -71,6 +79,14 @@
                 "querier": {
                     "type": "object",
                     "properties": {
+                        "additionalAnnotations": {
+                            "type": "object",
+                            "properties": {
+                                "downscaler/exclude": {
+                                    "type": "string"
+                                }
+                            }
+                        },
                         "behavior": {
                             "type": "object",
                             "properties": {

@@ -11,6 +11,8 @@ enterprise:
 hpa:
   querier:
     enabled: true
+    additionalAnnotations:
+      downscaler/exclude: "true"
     minReplicas: 1
     maxReplicas: 3
     targetCPUUtilizationPercentage: 90
@@ -33,6 +35,8 @@ hpa:
         stabilizationWindowSeconds: 60
   distributor:
     enabled: true
+    additionalAnnotations:
+      downscaler/exclude: "true"
     minReplicas: 1
     maxReplicas: 3
     targetCPUUtilizationPercentage: 90

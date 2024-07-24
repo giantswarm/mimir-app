@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Add annotations to querier's and distributor's hpas to evict those from the kube-downscaler scope.
+
+### Changed
+
 - Bump mimir version from datasource.
 
 ## [0.10.1] - 2024-07-22
