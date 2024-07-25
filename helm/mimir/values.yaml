@@ -106,8 +106,8 @@ mimir:
 
     resources:
       requests:
-        cpu: "1"
-        memory: 8Gi
+        cpu: "200m"
+        memory: 4Gi
 
     # -- Pod Disruption Budget for ingester, this will be applied across availability zones to prevent losing redundancy
     podDisruptionBudget:
@@ -116,6 +116,16 @@ mimir:
     securityContext:
       seccompProfile:
         type: RuntimeDefault
+
+    verticalAutoscaling:
+      enabled: true
+      # -- These values will be overriden in the config repos
+      minAllowed:
+        cpu: 100m
+        memory: 2Gi
+      maxAllowed:
+        cpu: 1
+        memory: 10Gi
 
   overrides_exporter:
     enabled: true
