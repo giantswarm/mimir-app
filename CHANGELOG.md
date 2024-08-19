@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add vpa resource template for the chunks cache.
+
 ## [0.11.1] - 2024-08-07
 
 ### Fixed

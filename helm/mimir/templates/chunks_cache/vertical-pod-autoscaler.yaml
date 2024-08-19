@@ -1,0 +1,27 @@
+{{- if and .Values.mimir.enabled (index .Values.mimir "chunks-cache" "enabled") (index .Values.mimir "chunks-cache" "verticalAutoscaling" "enabled") }}
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ include "mimir.resourceName" (dict "ctx" . "component" "chunks-cache") }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "mimir.labels" (dict "ctx" . "component" "chunks-cache") | nindent 4 }}
+spec:
+  resourcePolicy:
+    containerPolicies:
+    - containerName: ingester
+      controlledValues: RequestsAndLimits
+      minAllowed:
+        cpu: {{ index .Values.mimir "chunks-cache" "verticalAutoscaling" "minAllowed" "cpu" }}
+        memory: {{ index .Values.mimir "chunks-cache" "verticalAutoscaling" "minAllowed" "memory" }}
+      maxAllowed:
+        cpu: {{ index .Values.mimir "chunks-cache" "verticalAutoscaling" "maxAllowed" "cpu" }}
+        memory: {{ index .Values.mimir "chunks-cache" "verticalAutoscaling" "maxAllowed" "memory" }}
+      mode: Auto
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: {{ include "mimir.resourceName" (dict "ctx" . "component" "chunks-cache") }}
+  updatePolicy:
+    updateMode: Auto
+{{- end }}

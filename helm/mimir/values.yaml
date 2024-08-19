@@ -259,6 +259,14 @@ mimir:
   chunks-cache:
     # -- Specifies whether memcached based chunks-cache should be enabled
     enabled: false
+    verticalAutoscaling:
+      enabled: false
+      minAllowed:
+        cpu: 100m
+        memory: 500Mi
+      maxAllowed:
+        cpu: 1
+        memory: 2Gi
 
   index-cache:
     # -- Specifies whether memcached based index-cache should be enabled
