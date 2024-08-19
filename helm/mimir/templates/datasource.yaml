@@ -27,10 +27,10 @@ data:
       # The jsonData field isn't case-sensitive so even with a wrong one the datasource will work.
       # However it might become handy in the future for potential specific needs.
       jsonData:
-      httpMethod: "POST"
-      prometheusType: mimir
-      mimirVersion: {{ .Values.mimir.image.tag }}
-      # Set the prometheus scrape interval of 60s to fix https://github.com/giantswarm/giantswarm/issues/29865
-      timeInterval: 60s
-      cacheLevel: none
+        httpMethod: "POST"
+        prometheusType: mimir
+        mimirVersion: {{ .Values.mimir.image.tag }}
+        # Set the prometheus scrape interval of 60s to fix https://github.com/giantswarm/giantswarm/issues/29865
+        timeInterval: 60s
+        cacheLevel: none
 {{- end }}

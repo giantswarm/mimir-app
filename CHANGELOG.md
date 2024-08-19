@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add vpa resource template for the chunks cache.
 
+## [0.11.1] - 2024-08-07
+
+### Fixed
+
+- Fix indentation of jsonData in datasource.
+
 ## [0.11.0] - 2024-07-25
 
 ### Added
@@ -167,7 +173,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.11.0...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.11.1...HEAD
+[0.11.1]: https://github.com/giantswarm/mimir-app/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/giantswarm/mimir-app/compare/v0.10.1...v0.11.0
 [0.10.1]: https://github.com/giantswarm/mimir-app/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/giantswarm/mimir-app/compare/v0.9.0...v0.10.0
