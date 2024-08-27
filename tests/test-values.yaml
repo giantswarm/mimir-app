@@ -1,4 +1,10 @@
+global:
+  # -- In the kind cluster environment, the dns service name is kube-dns
+  dnsService: "kube-dns"
 mimir:
+  # -- MinIo is enabled to act as S3 backend storage
+  minio:
+    enabled: true
   chunks-cache:
     affinity:
       podAffinity:
@@ -81,17 +87,17 @@ mimir:
       enabled: true
   mimir:
     structuredConfig:
-      blocks_storage:
-        s3:
-          bucket_name: giantswarm-grizzly-mimir
-        tsdb:
-          retention_period: 72h
-      common:
-        storage:
-          backend: s3
-          s3:
-            endpoint: s3.eu-west-2.amazonaws.com
-            region: eu-west-2
+      # blocks_storage:
+      #   s3:
+      #     bucket_name: giantswarm-grizzly-mimir
+      #   tsdb:
+      #     retention_period: 72h
+      # common:
+      #   storage:
+      #     backend: s3
+      #     s3:
+      #       endpoint: s3.eu-west-2.amazonaws.com
+      #       region: eu-west-2
       distributor:
         max_recv_msg_size: 209715200
       ingester:
@@ -111,11 +117,11 @@ mimir:
         out_of_order_time_window: 5m
         ruler_max_rule_groups_per_tenant: 0
         ruler_max_rules_per_rule_group: 0
-      ruler:
-        alertmanager_url: http://alertmanager-operated.monitoring:9093
-      ruler_storage:
-        s3:
-          bucket_name: giantswarm-grizzly-mimir-ruler
+      # ruler:
+      #   alertmanager_url: http://alertmanager-operated.monitoring:9093
+      # ruler_storage:
+      #   s3:
+      #     bucket_name: giantswarm-grizzly-mimir-ruler
       server:
         grpc_server_max_recv_msg_size: 209715200
         grpc_server_max_send_msg_size: 209715200
