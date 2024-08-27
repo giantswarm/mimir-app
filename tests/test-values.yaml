@@ -6,15 +6,6 @@ mimir:
   minio:
     enabled: true
   chunks-cache:
-    affinity:
-      podAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchLabels:
-              app.kubernetes.io/component: store-gateway
-              app.kubernetes.io/instance: mimir
-              app.kubernetes.io/name: mimir
-          topologyKey: topology.kubernetes.io/zone
     allocatedMemory: 1024
     enabled: true
     verticalAutoscaling:
@@ -135,15 +126,6 @@ mimir:
   query_scheduler:
     enabled: true
   ruler:
-    affinity:
-      podAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchLabels:
-              app.kubernetes.io/component: store-gateway
-              app.kubernetes.io/instance: mimir
-              app.kubernetes.io/name: mimir
-          topologyKey: topology.kubernetes.io/zone
     enabled: true
     replicas: 1
     serviceAccount:
