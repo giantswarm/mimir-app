@@ -13,10 +13,10 @@ logger = logging.getLogger(__name__)
 namespace_name = "mimir"
 
 # -- Mimir statefulsets
-ingester_sts_name = "mimir-ingester"
-store_gateway_sts_name = "mimir-store-gateway"
-compactor_sts_name = "mimir-compactor"
-chunks_cache_sts_name = "mimir-chunks-cache"
+ingester_statefulset_name = "mimir-ingester"
+store_gateway_statefulset_name = "mimir-store-gateway"
+compactor_statefulset_name = "mimir-compactor"
+chunks_cache_statefulset_name = "mimir-chunks-cache"
 
 # -- Mimir deployments
 distributor_deployment_name = "mimir-distributor"
@@ -45,16 +45,16 @@ def test_api_working(kube_cluster: Cluster) -> None:
 # if you want to assert this multiple times
 # -- Checking that mimir's deployments and statefulsets are present on the cluster
 @pytest.fixture(scope="module")
-def ic_components(kube_cluster: Cluster) -> Tuple[List[pykube.Deployment], List[pykube.StatefulSet]]:
+def components(kube_cluster: Cluster) -> Tuple[List[pykube.Deployment], List[pykube.StatefulSet]]:
     logger.info("Waiting for mimir components to be deployed..")
 
-    components_ready = wait_for_ic_components(kube_cluster)
+    components_ready = wait_for_components(kube_cluster)
 
     logger.info("mimir components are deployed..")
 
     return components_ready
 
-def wait_for_ic_components(kube_cluster: Cluster) -> Tuple[List[pykube.Deployment], List[pykube.StatefulSet]]:
+def wait_for_components(kube_cluster: Cluster) -> Tuple[List[pykube.Deployment], List[pykube.StatefulSet]]:
     deployments = wait_for_deployments_to_run(
         kube_cluster.kube_client,
         [distributor_deployment_name, gateway_deployment_name, querier_deployment_name, query_frontend_deployment_name, query_scheduler_deployment_name, ruler_deployment_name, overrides_exporter_deployment_name],
@@ -63,7 +63,7 @@ def wait_for_ic_components(kube_cluster: Cluster) -> Tuple[List[pykube.Deploymen
     )
     statefulsets = wait_for_stateful_sets_to_run(
         kube_cluster.kube_client,
-        [ingester_sts_name, store_gateway_sts_name, compactor_sts_name, chunks_cache_sts_name],
+        [ingester_statefulset_name, store_gateway_statefulset_name, compactor_statefulset_name, chunks_cache_statefulset_name],
         namespace_name,
         timeout,
     )
@@ -84,11 +84,11 @@ def pods(kube_cluster: Cluster) -> List[pykube.Pod]:
 @pytest.mark.smoke
 @pytest.mark.upgrade
 @pytest.mark.flaky(reruns=5, reruns_delay=10)
-def test_pods_available(ic_components: Tuple[List[pykube.Deployment], List[pykube.StatefulSet]]):
+def test_pods_available(components: Tuple[List[pykube.Deployment], List[pykube.StatefulSet]]):
     # loop over the list of deployments
-    for d in ic_components[0]:
+    for d in components[0]:
         assert int(d.obj["status"]["readyReplicas"]) == int(d.obj["spec"]["replicas"])
 
     # loop over the list of statefulsets
-    for s in ic_components[1]:
+    for s in components[1]:
         assert int(s.obj["status"]["readyReplicas"]) == int(s.obj["spec"]["replicas"])
