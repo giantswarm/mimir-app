@@ -78,17 +78,6 @@ mimir:
       enabled: true
   mimir:
     structuredConfig:
-      # blocks_storage:
-      #   s3:
-      #     bucket_name: giantswarm-grizzly-mimir
-      #   tsdb:
-      #     retention_period: 72h
-      # common:
-      #   storage:
-      #     backend: s3
-      #     s3:
-      #       endpoint: s3.eu-west-2.amazonaws.com
-      #       region: eu-west-2
       distributor:
         max_recv_msg_size: 209715200
       ingester:
@@ -129,13 +118,8 @@ mimir:
     enabled: true
     replicas: 1
     serviceAccount:
-      annotations:
-        eks.amazonaws.com/role-arn: arn:aws:iam::242036376510:role/giantswarm-grizzly-mimir-ruler
       create: true
       name: mimir-ruler
-  serviceAccount:
-    annotations:
-      eks.amazonaws.com/role-arn: arn:aws:iam::242036376510:role/giantswarm-grizzly-mimir
   store_gateway:
     persistentVolume:
       size: 10Gi
