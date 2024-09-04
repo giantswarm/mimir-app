@@ -1,0 +1,136 @@
+global:
+  # -- In the kind cluster environment, the dns service name is kube-dns
+  dnsService: "kube-dns"
+mimir:
+  # -- MinIo is enabled to act as S3 backend storage
+  minio:
+    enabled: true
+  chunks-cache:
+    allocatedMemory: 1024
+    enabled: true
+    verticalAutoscaling:
+      enabled: true
+      minAllowed:
+        cpu: 100m
+        memory: 300Mi
+  compactor:
+    replicas: 1
+  distributor:
+    replicas: 1
+  enabled: true
+  gateway:
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-giantswarm
+        nginx.ingress.kubernetes.io/auth-realm: Authentication Required
+        nginx.ingress.kubernetes.io/auth-secret: mimir-gateway-ingress-auth
+        nginx.ingress.kubernetes.io/auth-type: basic
+        nginx.ingress.kubernetes.io/client-body-buffer-size: 50m
+        nginx.ingress.kubernetes.io/proxy-body-size: 50m
+      enabled: true
+      hosts:
+      - host: mimir.grizzly.gaws.gigantic.io
+        paths:
+        - path: /api/v1/push
+          pathType: ImplementationSpecific
+      ingressClassName: nginx
+      tls:
+      - hosts:
+        - mimir.grizzly.gaws.gigantic.io
+        secretName: mimir-ingress-cert
+    nginx:
+      basicAuth:
+        enabled: false
+        password: 1tnaneT
+        username: Tenant1
+      config:
+        clientMaxBodySize: 50m
+  ingester:
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - podAffinityTerm:
+            labelSelector:
+              matchLabels:
+                app.kubernetes.io/component: ingester
+                app.kubernetes.io/instance: mimir
+                app.kubernetes.io/name: mimir
+            topologyKey: kubernetes.io/hostname
+          weight: 1
+    verticalAutoscaling:
+      enabled: true
+      minAllowed:
+        cpu: 100m
+        memory: 300Mi
+    podDisruptionBudget:
+      maxUnavailable: 1
+    replicas: 3
+    statefulSet:
+      enabled: true
+    zoneAwareReplication:
+      enabled: false
+  memcached:
+    enabled: false
+  memcachedExporter:
+    enabled: false
+  metaMonitoring:
+    serviceMonitor:
+      enabled: true
+  mimir:
+    structuredConfig:
+      distributor:
+        max_recv_msg_size: 209715200
+      ingester:
+        ring:
+          replication_factor: 1
+      ingester_client:
+        grpc_client_config:
+          grpc_compression: snappy
+          max_recv_msg_size: 209715200
+          max_send_msg_size: 209715200
+      limits:
+        ingestion_burst_size: 10000000
+        ingestion_rate: 1000000
+        max_global_series_per_user: 0
+        max_label_names_per_series: 50
+        max_label_value_length: 4096
+        out_of_order_time_window: 5m
+        ruler_max_rule_groups_per_tenant: 0
+        ruler_max_rules_per_rule_group: 0
+      # ruler:
+      #   alertmanager_url: http://alertmanager-operated.monitoring:9093
+      # ruler_storage:
+      #   s3:
+      #     bucket_name: giantswarm-grizzly-mimir-ruler
+      server:
+        grpc_server_max_recv_msg_size: 209715200
+        grpc_server_max_send_msg_size: 209715200
+  overrides_exporter:
+    enabled: true
+    replicas: 1
+  querier:
+    replicas: 2
+  query_frontend:
+    replicas: 1
+  query_scheduler:
+    enabled: true
+  ruler:
+    enabled: true
+    replicas: 1
+    serviceAccount:
+      create: true
+      name: mimir-ruler
+  store_gateway:
+    persistentVolume:
+      size: 10Gi
+    podDisruptionBudget:
+      maxUnavailable: 1
+    replicas: 1
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+    zoneAwareReplication:
+      enabled: false
+psp:
+  enabled: true
