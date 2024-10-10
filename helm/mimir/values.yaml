@@ -56,7 +56,6 @@ mimir:
     tag: 2.13.0
 
   rbac:
-    forcePSPOnKubernetes124: true
     podSecurityPolicy:
       readOnlyRootFilesystem: false
       additionalVolumes:
