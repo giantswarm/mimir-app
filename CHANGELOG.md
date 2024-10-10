@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade chart to version `5.5.0-weekly.310` to be able to use continuous-test.
+
 ## [0.13.1] - 2024-10-09
 
 ### Fixed
