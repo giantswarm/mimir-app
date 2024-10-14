@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Upgrade chart to version `5.5.0` and mimir 2.14.0.
-  -  Memcached: Update to Memcached 1.6.28 and memcached-exporter 0.14.4.
+  -  Memcached: Update to Memcached 1.6.31-alpine and memcached-exporter 0.14.4.
   -  Ingester: set GOMAXPROCS to help with Go scheduling overhead when running on machines with lots of CPU cores.
   -  Add missing container security context to run `continuous-test` under the restricted security policy.
 
