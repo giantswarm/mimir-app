@@ -55,7 +55,6 @@ mimir:
     repository: gsoci.azurecr.io/giantswarm/mimir
 
   rbac:
-    forcePSPOnKubernetes124: true
     podSecurityPolicy:
       readOnlyRootFilesystem: false
       additionalVolumes:
