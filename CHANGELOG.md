@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Chunged
+### Added
+
+- Add "manual e2e" testing procedure.
+
+### Changed
 
 - Upgrade chart to version `5.5.1`.
 
