@@ -1,6 +1,6 @@
 # Manual e2e testing
 
-As of now, the [apptest-framework](https://github.com/giantswarm/apptest-framework) used for automated e2e testiong doesn't support MC-only apps. Hence the manual procedure described here in order to ensure that the app works as expected in a Giant Swarm environment.
+As of now, the [apptest-framework](https://github.com/giantswarm/apptest-framework) used for automated e2e testing doesn't support MC-only apps. Hence the manual procedure described here in order to ensure that the app works as expected in a Giant Swarm environment.
 
 ## Procedure
 
