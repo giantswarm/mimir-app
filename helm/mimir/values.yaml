@@ -53,11 +53,8 @@ mimir:
 
   image:
     repository: gsoci.azurecr.io/giantswarm/mimir
-    tag: 2.13.0
-    pullPolicy: IfNotPresent
 
   rbac:
-    forcePSPOnKubernetes124: true
     podSecurityPolicy:
       readOnlyRootFilesystem: false
       additionalVolumes:
@@ -238,8 +235,6 @@ mimir:
   memcached:
     image:
       repository: gsoci.azurecr.io/giantswarm/memcached
-      tag: 1.6.22-alpine
-      pullPolicy: IfNotPresent
 
     podSecurityContext:
       runAsNonRoot: true
@@ -253,8 +248,6 @@ mimir:
 
     image:
       repository: gsoci.azurecr.io/giantswarm/memcached-exporter
-      tag: v0.13.0
-      pullPolicy: IfNotPresent
 
   chunks-cache:
     # -- Specifies whether memcached based chunks-cache should be enabled
@@ -322,4 +315,3 @@ mimir:
       image:
         registry: gsoci.azurecr.io
         repository: giantswarm/nginx-unprivileged
-        tag: 1.27-alpine

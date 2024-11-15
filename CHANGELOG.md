@@ -11,6 +11,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add "manual e2e" testing procedure.
 
+### Changed
+
+- Upgrade chart to version `5.5.1`.
+
+## [0.14.0] - 2024-10-14
+
+### Changed
+
+- Upgrade chart to version `5.5.0` and mimir 2.14.0.
+  -  Memcached: Update to Memcached 1.6.31-alpine and memcached-exporter 0.14.4.
+  -  Ingester: set GOMAXPROCS to help with Go scheduling overhead when running on machines with lots of CPU cores.
+  -  Add missing container security context to run `continuous-test` under the restricted security policy.
+
+## [0.13.1] - 2024-10-09
+
+### Fixed
+
+- Fix circleci config.
+
 ## [0.13.0] - 2024-09-04
 
 ### Added
@@ -186,7 +205,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.13.0...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.14.0...HEAD
+[0.14.0]: https://github.com/giantswarm/mimir-app/compare/v0.13.1...v0.14.0
+[0.13.1]: https://github.com/giantswarm/mimir-app/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/giantswarm/mimir-app/compare/v0.12.0...v0.13.0
 [0.12.0]: https://github.com/giantswarm/mimir-app/compare/v0.11.1...v0.12.0
 [0.11.1]: https://github.com/giantswarm/mimir-app/compare/v0.11.0...v0.11.1

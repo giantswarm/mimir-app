@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@5.8.0
+  architect: giantswarm/architect@5.11.1
 
 jobs:
   template-chart:
@@ -19,9 +19,8 @@ workflows:
       - template-chart:
           name: "template-chart"
           filters:
-            branches:
-              ignore:
-                - main
+            tags:
+              only: /^v.*/
 
       - architect/push-to-app-catalog:
           context: architect
@@ -32,6 +31,8 @@ workflows:
           chart: mimir
           ct_config: ".circleci/ct-config.yml"
           persist_chart_archive: true
+          requires:
+            - "template-chart"
           # Trigger job on git tag.
           filters:
             tags:
