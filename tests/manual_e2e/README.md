@@ -11,7 +11,7 @@ Obviously you'll have to check that the deployment of your custom branch's versi
 Once your app is correctly deployed,  :
 
 - Let it run for a bit, like 10min or more.
-- Inspect the `TODO : find continuous-test dashboard` dasboard which will give information mimir's overall health. This is made possible through the use of the `mimir-continuous-test` component that is deployed by default in our mimir setup. For more information on it if you feel the need to tune it for your tests, head over to the [official documentation page](https://grafana.com/docs/mimir/latest/manage/tools/mimir-continuous-test/).
+- Inspect the `mimir-continuous-test` dasboard which will give information mimir's overall health. This is made possible through the use of the `mimir-continuous-test` component that is deployed by default in our mimir setup. For more information on it if you feel the need to tune it for your tests, head over to the [official documentation page](https://grafana.com/docs/mimir/latest/manage/tools/mimir-continuous-test/).
 - If eveything appears to be fine, then you can revert the flux's evicting procedure that you did and let it reconcile to its original version.
 
 Congratulations, ou have completed the manual e2e testing procedure ! Your PR is now ready to be merged.
