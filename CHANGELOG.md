@@ -10,10 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add "manual e2e" testing procedure.
-
-### Changed
-
-- Upgrade chart to version `5.5.1`.
+- Add configuration for alertmanager component to be HA.
 
 ## [0.14.0] - 2024-10-14
 
