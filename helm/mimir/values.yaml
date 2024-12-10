@@ -50,7 +50,8 @@ alertmanager:
   affinity:
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-      - podAffinityTerm:
+      - weight: 100
+        podAffinityTerm:
           labelSelector:
             matchExpressions:
             - key: app.kubernetes.io/component
