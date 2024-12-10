@@ -68,7 +68,6 @@ mimir:
 
   image:
     repository: gsoci.azurecr.io/giantswarm/mimir
-    tag: 2.14.0
 
   rbac:
     podSecurityPolicy:
