@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.0] - 2024-12-10
+
 ### Added
 
 - Add "manual e2e" testing procedure.
@@ -202,7 +204,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.14.0...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.15.0...HEAD
+[0.15.0]: https://github.com/giantswarm/mimir-app/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/giantswarm/mimir-app/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/giantswarm/mimir-app/compare/v0.13.0...v0.13.1
 [0.13.0]: https://github.com/giantswarm/mimir-app/compare/v0.12.0...v0.13.0
