@@ -38,14 +38,6 @@ Here are 2 possible workarounds. Proper fixes are not determined yet, we have to
 - set `readOnlyRootFilesystem: true` in container securitycontext
 - remove `runAsGroup` and `runAsUser` from spec securitycontext
 
-
-## grafana datasource
-
-Create a new prometheus datasource in Grafana.
-
-Settings:
-* URL: `http://mimir-gateway.mimir.svc/prometheus`
-
 ## Remotewrite
 
 We provided a sample remotewrite that sends all data from all prometheis to Mimir.
