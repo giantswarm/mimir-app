@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Upgrade chart to version `5.6.0-weekly.319`.
 
+## [0.15.1] - 2025-01-14
+
+### Removed
+
+- Remove mimir datasource as it is now managed by the observability operator.
+
 ## [0.15.0] - 2024-12-10
 
 ### Added
@@ -211,7 +217,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.15.0...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.15.1...HEAD
+[0.15.1]: https://github.com/giantswarm/mimir-app/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/giantswarm/mimir-app/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/giantswarm/mimir-app/compare/v0.13.1...v0.14.0
 [0.13.1]: https://github.com/giantswarm/mimir-app/compare/v0.13.0...v0.13.1
