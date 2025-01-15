@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade chart to version 5.6.0-rc.0
   - Add the possibility to create a dedicated serviceAccount for the alertmanager component by setting alertmanager.serviceAcount.create to true in the values.
   - Add support for setting type and internal traffic policy for Kubernetes service. Set internalTrafficPolicy=Cluster by default in all services with type ClusterIP.
+  - more at https://github.com/grafana/mimir/blob/mimir-distributed-5.6.0-rc.0/operations/helm/charts/mimir-distributed/CHANGELOG.md#560-rc0
 - Upgrade mimir to 2.15.0
   - Ingester: Change -initial-delay for circuit breakers to begin when the first request is received, rather than at breaker activation.
   - Query-frontend: apply query pruning before query sharding instead of after.
@@ -19,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Querier: The `.` pattern in regular expressions in PromQL matches newline characters. With this change regular expressions like `.*` match strings that include `\n`. To maintain the old behaviour, you will have to change regular expressions by replacing all `.` patterns with `[^\n]`, e.g. `foo[^\n]*`. This upgrades PromQL compatibility from Prometheus 2.0 to 3.0. #9844
   - Ingester: improve performance of reading the WAL.
   - Querier: improve performance and memory consumption of queries that select many series.
+  - more at https://github.com/grafana/mimir/blob/main/CHANGELOG.md#2150
 
 ## [0.15.1] - 2025-01-14
 
