@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgrade chart to version `5.6.0-weekly.319`.
+- Upgrade chart to version `5.6.0-rc.0`.
 
 ## [0.15.1] - 2025-01-14
 
