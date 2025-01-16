@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Upgrade chart to version 5.6.0-rc.0
+- Upgrade chart to version 5.6.0
   - Add the possibility to create a dedicated serviceAccount for the alertmanager component by setting alertmanager.serviceAcount.create to true in the values.
   - Add support for setting type and internal traffic policy for Kubernetes service. Set internalTrafficPolicy=Cluster by default in all services with type ClusterIP.
-  - more at https://github.com/grafana/mimir/blob/mimir-distributed-5.6.0-rc.0/operations/helm/charts/mimir-distributed/CHANGELOG.md#560-rc0
+  - more at https://github.com/grafana/mimir/blob/mimir-distributed-5.6.0/operations/helm/charts/mimir-distributed/CHANGELOG.md#560
 - Upgrade mimir to 2.15.0
   - Ingester: Change -initial-delay for circuit breakers to begin when the first request is received, rather than at breaker activation.
   - Query-frontend: apply query pruning before query sharding instead of after.
