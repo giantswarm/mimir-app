@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.16.0] - 2025-01-16
+
 ### Changed
 
 - Upgrade chart to version 5.6.0
@@ -228,7 +230,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.15.1...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.16.0...HEAD
+[0.16.0]: https://github.com/giantswarm/mimir-app/compare/v0.15.1...v0.16.0
 [0.15.1]: https://github.com/giantswarm/mimir-app/compare/v0.15.0...v0.15.1
 [0.15.0]: https://github.com/giantswarm/mimir-app/compare/v0.14.0...v0.15.0
 [0.14.0]: https://github.com/giantswarm/mimir-app/compare/v0.13.1...v0.14.0
