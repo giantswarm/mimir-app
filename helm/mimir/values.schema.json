@@ -2,6 +2,68 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "alertmanager": {
+            "type": "object",
+            "properties": {
+                "affinity": {
+                    "type": "object",
+                    "properties": {
+                        "podAntiAffinity": {
+                            "type": "object",
+                            "properties": {
+                                "preferredDuringSchedulingIgnoredDuringExecution": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "podAffinityTerm": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "labelSelector": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "matchExpressions": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "key": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "operator": {
+                                                                            "type": "string"
+                                                                        },
+                                                                        "values": {
+                                                                            "type": "array",
+                                                                            "items": {
+                                                                                "type": "string"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "topologyKey": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "weight": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "replicas": {
+                    "type": "integer"
+                }
+            }
+        },
         "enterprise": {
             "type": "object",
             "properties": {
@@ -161,6 +223,36 @@
                     "properties": {
                         "enabled": {
                             "type": "boolean"
+                        },
+                        "verticalAutoscaling": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "maxAllowed": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "integer"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "minAllowed": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cpu": {
+                                            "type": "string"
+                                        },
+                                        "memory": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -295,9 +387,6 @@
                                         },
                                         "repository": {
                                             "type": "string"
-                                        },
-                                        "tag": {
-                                            "type": "string"
                                         }
                                     }
                                 }
@@ -340,13 +429,7 @@
                 "image": {
                     "type": "object",
                     "properties": {
-                        "pullPolicy": {
-                            "type": "string"
-                        },
                         "repository": {
-                            "type": "string"
-                        },
-                        "tag": {
                             "type": "string"
                         }
                     }
@@ -451,13 +534,7 @@
                         "image": {
                             "type": "object",
                             "properties": {
-                                "pullPolicy": {
-                                    "type": "string"
-                                },
                                 "repository": {
-                                    "type": "string"
-                                },
-                                "tag": {
                                     "type": "string"
                                 }
                             }
@@ -492,13 +569,7 @@
                         "image": {
                             "type": "object",
                             "properties": {
-                                "pullPolicy": {
-                                    "type": "string"
-                                },
                                 "repository": {
-                                    "type": "string"
-                                },
-                                "tag": {
                                     "type": "string"
                                 }
                             }
@@ -605,6 +676,75 @@
                 "querier": {
                     "type": "object",
                     "properties": {
+                        "kedaAutoscaling": {
+                            "type": "object",
+                            "properties": {
+                                "behavior": {
+                                    "type": "object",
+                                    "properties": {
+                                        "scaleDown": {
+                                            "type": "object",
+                                            "properties": {
+                                                "policies": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "periodSeconds": {
+                                                                "type": "integer"
+                                                            },
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "value": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "stabilizationWindowSeconds": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "scaleUp": {
+                                            "type": "object",
+                                            "properties": {
+                                                "policies": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "periodSeconds": {
+                                                                "type": "integer"
+                                                            },
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "value": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "stabilizationWindowSeconds": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "maxReplicaCount": {
+                                    "type": "integer"
+                                },
+                                "minReplicaCount": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
                         "replicas": {
                             "type": "integer"
                         },
@@ -719,9 +859,6 @@
                 "rbac": {
                     "type": "object",
                     "properties": {
-                        "forcePSPOnKubernetes124": {
-                            "type": "boolean"
-                        },
                         "podSecurityPolicy": {
                             "type": "object",
                             "properties": {
