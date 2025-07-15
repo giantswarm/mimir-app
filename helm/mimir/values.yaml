@@ -172,6 +172,27 @@ mimir:
   querier:
     replicas: 2
 
+    kedaAutoscaling:
+      enabled: false
+      minReplicaCount: 1
+      maxReplicaCount: 3
+      behavior:
+        scaleDown:
+          policies:
+            - periodSeconds: 120
+              type: Percent
+              value: 10
+          stabilizationWindowSeconds: 600
+        scaleUp:
+          policies:
+            - periodSeconds: 120
+              type: Percent
+              value: 50
+            - periodSeconds: 120
+              type: Pods
+              value: 15
+          stabilizationWindowSeconds: 60
+
     resources:
       requests:
         cpu: 100m
