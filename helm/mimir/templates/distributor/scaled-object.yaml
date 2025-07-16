@@ -2,11 +2,11 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: {{ include "mimir.readFullname" . }}
+  name: {{ include "mimir.resourceName" (dict "ctx" . "component" "distributor") }}
   namespace: {{ .Release.Namespace }}
 spec:
   scaleTargetRef:
-    name: {{ include "mimir.readFullname" . }}
+    name: {{ include "mimir.resourceName" (dict "ctx" . "component" "distributor") }}
   {{- if .Values.kedaAutoscaling.distributor.horizontalPodAutoscalerConfig }}
   advanced:
     horizontalPodAutoscalerConfig:
