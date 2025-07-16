@@ -74,8 +74,8 @@ kedaAutoscaling:
     enabled: false
     horizontalPodAutoscalerConfig:
       behavior:
-       scaleDown:
-        policies:
+        scaleDown:
+          policies:
           - periodSeconds: 600
             type: Percent
             value: 10
