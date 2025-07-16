@@ -46,7 +46,7 @@ hpa:
 
 kedaAutoscaling:
   querier:
-    enabled: false
+    enabled: true
     horizontalPodAutoscalerConfig:
       behavior:
         scaleDown:
@@ -64,12 +64,19 @@ kedaAutoscaling:
               type: Pods
               value: 15
           stabilizationWindowSeconds: 60
+    triggers:
+    - type: memory
+      metricType: Utilization
+      metadata:
+        value: "90" # equivalent of targetMemoryUtilizationPercentage in HPA
+    - type: cpu
+      metricType: Utilization
+      metadata:
+        value: "90" # equivalent of targetCPUUtilizationPercentage in HPA
     pollingInterval: 30
     cooldownPeriod: 300
     minReplicas: 1
     maxReplicas: 3
-    targetCPUUtilizationPercentage: "90"
-    targetMemoryUtilizationPercentage: "90"
   distributor:
     enabled: false
     horizontalPodAutoscalerConfig:
@@ -79,21 +86,35 @@ kedaAutoscaling:
           - periodSeconds: 600
             type: Percent
             value: 10
+    triggers:
+    - type: memory
+      metricType: Utilization
+      metadata:
+        value: "90"
+    - type: cpu
+      metricType: Utilization
+      metadata:
+        value: "90"
     pollingInterval: 30
     cooldownPeriod: 300
     minReplicas: 1
     maxReplicas: 3
-    targetCPUUtilizationPercentage: "90"
-    targetMemoryUtilizationPercentage: "90"
   gateway:
     enabled: false
     horizontalPodAutoscalerConfig: {}
+    triggers:
+    - type: memory
+      metricType: Utilization
+      metadata:
+        value: "90"
+    - type: cpu
+      metricType: Utilization
+      metadata:
+        value: "90"
     pollingInterval: 30
     cooldownPeriod: 300
     minReplicas: 1
     maxReplicas: 3
-    targetCPUUtilizationPercentage: "90"
-    targetMemoryUtilizationPercentage: "90"
 
 # Default configuration for HA alertmanager
 alertmanager:

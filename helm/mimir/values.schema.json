@@ -260,11 +260,27 @@
                         "pollingInterval": {
                             "type": "integer"
                         },
-                        "targetCPUUtilizationPercentage": {
-                            "type": "string"
-                        },
-                        "targetMemoryUtilizationPercentage": {
-                            "type": "string"
+                        "triggers": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "metadata": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "metricType": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -289,11 +305,27 @@
                         "pollingInterval": {
                             "type": "integer"
                         },
-                        "targetCPUUtilizationPercentage": {
-                            "type": "string"
-                        },
-                        "targetMemoryUtilizationPercentage": {
-                            "type": "string"
+                        "triggers": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "metadata": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "metricType": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -375,11 +407,27 @@
                         "pollingInterval": {
                             "type": "integer"
                         },
-                        "targetCPUUtilizationPercentage": {
-                            "type": "string"
-                        },
-                        "targetMemoryUtilizationPercentage": {
-                            "type": "string"
+                        "triggers": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "metadata": {
+                                        "type": "object",
+                                        "properties": {
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "metricType": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
                     }
                 }

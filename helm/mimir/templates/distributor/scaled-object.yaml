@@ -17,12 +17,5 @@ spec:
   minReplicaCount: {{ .Values.kedaAutoscaling.distributor.minReplicas }}
   maxReplicaCount: {{ .Values.kedaAutoscaling.distributor.maxReplicas }}
   triggers:
-  - type: memory
-    metricType: Utilization
-    metadata:
-      value: {{ .Values.kedaAutoscaling.distributor.targetMemoryUtilizationPercentage | quote }}
-  - type: cpu
-    metricType: Utilization
-    metadata:
-      value: {{ .Values.kedaAutoscaling.distributor.targetCPUUtilizationPercentage | quote }}
+  {{- toYaml .Values.kedaAutoscaling.querier.triggers | nindent 2 }}
 {{- end }}
