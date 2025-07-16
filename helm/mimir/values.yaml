@@ -46,7 +46,7 @@ hpa:
 
 kedaAutoscaling:
   querier:
-    enabled: true
+    enabled: false
     horizontalPodAutoscalerConfig:
       behavior:
         scaleDown:
