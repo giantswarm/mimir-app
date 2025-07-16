@@ -1,0 +1,21 @@
+{{- if .Values.kedaAutoscaling.gateway.enabled }}
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ include "mimir.resourceName" (dict "ctx" . "component" "gateway") }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    name: {{ include "mimir.resourceName" (dict "ctx" . "component" "gateway") }}
+  {{- if .Values.kedaAutoscaling.gateway.horizontalPodAutoscalerConfig }}
+  advanced:
+    horizontalPodAutoscalerConfig:
+      {{- toYaml .Values.kedaAutoscaling.gateway.horizontalPodAutoscalerConfig | nindent 6 }}
+  {{- end }}
+  pollingInterval: {{ .Values.kedaAutoscaling.gateway.pollingInterval }}
+  cooldownPeriod: {{ .Values.kedaAutoscaling.gateway.cooldownPeriod }}
+  minReplicaCount: {{ .Values.kedaAutoscaling.gateway.minReplicas }}
+  maxReplicaCount: {{ .Values.kedaAutoscaling.gateway.maxReplicas }}
+  triggers:
+  {{- toYaml .Values.kedaAutoscaling.querier.triggers | nindent 2 }}
+{{- end }}
