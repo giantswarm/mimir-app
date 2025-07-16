@@ -68,11 +68,13 @@ kedaAutoscaling:
     - type: memory
       metricType: Utilization
       metadata:
-        value: "90" # equivalent of targetMemoryUtilizationPercentage in HPA
+        # equivalent of targetMemoryUtilizationPercentage in HPA
+        value: "90"
     - type: cpu
       metricType: Utilization
       metadata:
-        value: "90" # equivalent of targetCPUUtilizationPercentage in HPA
+        # equivalent of targetCPUUtilizationPercentage in HPA
+        value: "90"
     pollingInterval: 30
     cooldownPeriod: 300
     minReplicas: 1
