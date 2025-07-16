@@ -1,0 +1,28 @@
+{{- if .Values.kedaAutoscaling.distributor.enabled }}
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ include "mimir.readFullname" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    name: {{ include "mimir.readFullname" . }}
+  {{- if .Values.kedaAutoscaling.distributor.horizontalPodAutoscalerConfig }}
+  advanced:
+    horizontalPodAutoscalerConfig:
+      {{- toYaml .Values.kedaAutoscaling.distributor.horizontalPodAutoscalerConfig | nindent 6 }}
+  {{- end }}
+  pollingInterval: {{ .Values.kedaAutoscaling.distributor.pollingInterval }}
+  cooldownPeriod: {{ .Values.kedaAutoscaling.distributor.cooldownPeriod }}
+  minReplicaCount: {{ .Values.kedaAutoscaling.distributor.minReplicas }}
+  maxReplicaCount: {{ .Values.kedaAutoscaling.distributor.maxReplicas }}
+  triggers:
+  - type: memory
+    metricType: Utilization
+    metadata:
+      value: {{ .Values.kedaAutoscaling.distributor.targetMemoryUtilizationPercentage | quote }}
+  - type: cpu
+    metricType: Utilization
+    metadata:
+      value: {{ .Values.kedaAutoscaling.distributor.targetCPUUtilizationPercentage | quote }}
+{{- end }}
