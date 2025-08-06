@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `fallback` section to the ScaledObjects resources templates.
+
 ## [0.17.1] - 2025-07-16
 
 ### Added

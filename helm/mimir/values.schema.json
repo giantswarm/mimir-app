@@ -219,6 +219,9 @@
                         "enabled": {
                             "type": "boolean"
                         },
+                        "fallback": {
+                            "type": "object"
+                        },
                         "horizontalPodAutoscalerConfig": {
                             "type": "object",
                             "properties": {
@@ -293,6 +296,9 @@
                         "enabled": {
                             "type": "boolean"
                         },
+                        "fallback": {
+                            "type": "object"
+                        },
                         "horizontalPodAutoscalerConfig": {
                             "type": "object"
                         },
@@ -337,6 +343,9 @@
                         },
                         "enabled": {
                             "type": "boolean"
+                        },
+                        "fallback": {
+                            "type": "object"
                         },
                         "horizontalPodAutoscalerConfig": {
                             "type": "object",
