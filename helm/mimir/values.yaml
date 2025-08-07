@@ -64,6 +64,7 @@ kedaAutoscaling:
               type: Pods
               value: 15
           stabilizationWindowSeconds: 60
+    fallback: {}
     triggers:
     - type: memory
       metricType: Utilization
@@ -88,6 +89,7 @@ kedaAutoscaling:
           - periodSeconds: 600
             type: Percent
             value: 10
+    fallback: {}
     triggers:
     - type: memory
       metricType: Utilization
@@ -104,6 +106,7 @@ kedaAutoscaling:
   gateway:
     enabled: false
     horizontalPodAutoscalerConfig: {}
+    fallback: {}
     triggers:
     - type: memory
       metricType: Utilization
