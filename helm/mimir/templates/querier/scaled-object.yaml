@@ -17,9 +17,9 @@ spec:
   minReplicaCount: {{ .Values.kedaAutoscaling.querier.minReplicas }}
   maxReplicaCount: {{ .Values.kedaAutoscaling.querier.maxReplicas }}
   triggers:
-  {{- toYaml .Values.kedaAutoscaling.querier.triggers | nindent 2 }}
+    {{- toYaml .Values.kedaAutoscaling.querier.triggers | nindent 2 }}
   {{- if .Values.kedaAutoscaling.querier.fallback }}
   fallback:
-    {{- toYaml .Values.kedaAutoscaling.querier.fallback | nindent 2 }}
+    {{- toYaml .Values.kedaAutoscaling.querier.fallback | nindent 4 }}
   {{- end }}
 {{- end }}
