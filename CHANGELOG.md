@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.18.1] - 2025-08-11
+
 ### Changed
 
 - Fix indentation and improve readability in ScaledObject resources templates.
@@ -253,7 +255,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.18.0...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.18.1...HEAD
+[0.18.1]: https://github.com/giantswarm/mimir-app/compare/v0.18.0...v0.18.1
 [0.18.0]: https://github.com/giantswarm/mimir-app/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/giantswarm/mimir-app/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/giantswarm/mimir-app/compare/v0.16.0...v0.17.0
