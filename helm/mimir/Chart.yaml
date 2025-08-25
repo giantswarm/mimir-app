@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 2.16.0
+appVersion: 2.17.0
 name: mimir
 description: A Helm chart for grafana's Mimir
 icon: https://s.giantswarm.io/app-icons/grafana-mimir/1/light-icon.svg
