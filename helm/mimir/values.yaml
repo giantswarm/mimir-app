@@ -242,6 +242,15 @@ mimir:
         cpu: 100m
         memory: 128Mi
 
+    verticalAutoscaling:
+      enabled: true
+      minAllowed:
+        cpu: 100m
+        memory: 128Mi
+      maxAllowed:
+        cpu: 2
+        memory: 2Gi
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
@@ -294,6 +303,15 @@ mimir:
       requests:
         cpu: 100m
         memory: 512Mi
+
+    verticalAutoscaling:
+      enabled: true
+      minAllowed:
+        cpu: 100m
+        memory: 512Mi
+      maxAllowed:
+        cpu: 1
+        memory: 2Gi
 
     # -- Pod Disruption Budget for store-gateway, this will be applied across availability zones to prevent losing redundancy
     podDisruptionBudget:

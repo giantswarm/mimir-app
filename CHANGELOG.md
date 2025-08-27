@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added verticalAutoscaling configuration for ruler and store_gateway components to enable automatic resource scaling based on actual usage.
+
 ## [0.19.0] - 2025-08-25
 
 ### Changed

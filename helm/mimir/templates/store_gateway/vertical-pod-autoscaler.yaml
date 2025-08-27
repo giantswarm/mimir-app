@@ -1,0 +1,27 @@
+{{- if and .Values.mimir.enabled .Values.mimir.store_gateway.verticalAutoscaling.enabled }}
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ include "mimir.resourceName" (dict "ctx" . "component" "store-gateway" "memberlist" true) }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "mimir.labels" (dict "ctx" . "component" "store-gateway") | nindent 4 }}
+spec:
+  resourcePolicy:
+    containerPolicies:
+    - containerName: store-gateway
+      controlledValues: RequestsAndLimits
+      minAllowed:
+        cpu: {{ .Values.mimir.store_gateway.verticalAutoscaling.minAllowed.cpu }}
+        memory: {{ .Values.mimir.store_gateway.verticalAutoscaling.minAllowed.memory }}
+      maxAllowed:
+        cpu: {{ .Values.mimir.store_gateway.verticalAutoscaling.maxAllowed.cpu }}
+        memory: {{ .Values.mimir.store_gateway.verticalAutoscaling.maxAllowed.memory }}
+      mode: Auto
+  targetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: {{ include "mimir.resourceName" (dict "ctx" . "component" "store-gateway" "memberlist" true) }}
+  updatePolicy:
+    updateMode: Auto
+{{- end }}
