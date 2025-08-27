@@ -352,6 +352,15 @@ mimir:
         cpu: 1000m
         memory: 2Gi
 
+    verticalAutoscaling:
+      enabled: true
+      minAllowed:
+        cpu: 100m
+        memory: 512Mi
+      maxAllowed:
+        cpu: 1
+        memory: 2Gi
+
     # -- Pod Disruption Budget for store-gateway, this will be applied across availability zones to prevent losing redundancy
     podDisruptionBudget:
       maxUnavailable: 1
