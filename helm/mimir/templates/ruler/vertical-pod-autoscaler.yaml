@@ -1,0 +1,27 @@
+{{- if and .Values.mimir.enabled .Values.mimir.ruler.verticalAutoscaling.enabled }}
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ include "mimir.resourceName" (dict "ctx" . "component" "ruler" "memberlist" true) }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "mimir.labels" (dict "ctx" . "component" "ruler") | nindent 4 }}
+spec:
+  resourcePolicy:
+    containerPolicies:
+    - containerName: ruler
+      controlledValues: RequestsAndLimits
+      minAllowed:
+        cpu: {{ .Values.mimir.ruler.verticalAutoscaling.minAllowed.cpu }}
+        memory: {{ .Values.mimir.ruler.verticalAutoscaling.minAllowed.memory }}
+      maxAllowed:
+        cpu: {{ .Values.mimir.ruler.verticalAutoscaling.maxAllowed.cpu }}
+        memory: {{ .Values.mimir.ruler.verticalAutoscaling.maxAllowed.memory }}
+      mode: Auto
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "mimir.resourceName" (dict "ctx" . "component" "ruler" "memberlist" true) }}
+  updatePolicy:
+    updateMode: Auto
+{{- end }}
