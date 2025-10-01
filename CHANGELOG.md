@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added verticalAutoscaling configuration for ruler and store_gateway components to enable automatic resource scaling based on actual usage.
 
+### Fixed
+
+- Fix helpers to be able to display pod labels to support tracing.
+
 ## [0.19.0] - 2025-08-25
 
 ### Changed

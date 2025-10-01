@@ -24,15 +24,6 @@ If release name contains chart name it will be used as a full name.
 {{- end -}}
 {{- end -}}
 
-
-{{/*
-Calculate the infix for naming
-*/}}
-{{- define "mimir.infixName" -}}
-{{- if and .Values.enterprise.enabled .Values.enterprise.legacyLabels -}}enterprise-metrics{{- else -}}mimir{{- end -}}
-{{- end -}}
-
-
 {{/*
 Resource labels
 Params:
@@ -88,6 +79,9 @@ Params:
 */}}
 {{- define "mimir.podLabels" -}}
 application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+{{ with .ctx.Values.global.podLabels -}}
+{{ toYaml . }}
+{{ end }}
 {{ if .ctx.Values.enterprise.legacyLabels }}
 {{- if .component -}}
 app: {{ include "mimir.name" .ctx }}-{{ .component }}
@@ -129,7 +123,6 @@ zone: {{ .rolloutZoneName }}
 {{- end }}
 {{- end -}}
 
-
 {{/*
 Service selector labels
 Params:
@@ -158,4 +151,3 @@ rollout-group: {{ .component }}
 zone: {{ .rolloutZoneName }}
 {{- end }}
 {{- end -}}
-
