@@ -248,7 +248,7 @@ mimir:
         cpu: 100m
         memory: 128Mi
       maxAllowed:
-        cpu: 2
+        cpu: 1
         memory: 2Gi
 
     securityContext:
@@ -308,7 +308,7 @@ mimir:
       enabled: true
       minAllowed:
         cpu: 100m
-        memory: 512Mi
+        memory: 256Mi
       maxAllowed:
         cpu: 1
         memory: 2Gi
