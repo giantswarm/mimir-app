@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix helpers to be able to display pod labels to support tracing.
+
 ## [0.20.0] - 2025-09-01
 
 ### Added
