@@ -7,3 +7,4 @@ checks:
   - "latest-tag"
   - "no-anti-affinity"
   - "non-existent-service-account"
+  - "job-ttl-seconds-after-finished"
