@@ -123,7 +123,7 @@ kedaAutoscaling:
 
 routes:
   gateway:
-    enabled: true
+    enabled: false
     # -- Set the route kind
     # Valid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute
     kind: HTTPRoute
@@ -131,8 +131,8 @@ routes:
     annotations: {}
     labels: {}
 
-    hostnames: []
-    # - my-filter.example.com
+    hostnames:
+    - mimir.golem.gaws.gigantic.io
     parentRefs: []
     # - name: giantswarm-default
     #   namespace: envoy-gateway-system
