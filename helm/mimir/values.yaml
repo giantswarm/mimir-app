@@ -121,6 +121,37 @@ kedaAutoscaling:
     minReplicas: 1
     maxReplicas: 3
 
+routes:
+  gateway:
+    enabled: true
+    # -- Set the route kind
+    # Valid options are GRPCRoute, HTTPRoute, TCPRoute, TLSRoute, UDPRoute
+    kind: HTTPRoute
+
+    annotations: {}
+    labels: {}
+
+    hostnames: []
+    # - my-filter.example.com
+    parentRefs: []
+    # - name: acme-gw
+
+    matches:
+      - path:
+          type: PathPrefix
+          value: /
+
+    ## Filters define the filters that are applied to requests that match this rule.
+    filters: []
+
+    ## Additional custom rules that can be added to the route
+    additionalRules: []
+
+    auth:
+      enabled: true
+      secret: mimir-gateway-auth
+
+
 # Default configuration for HA alertmanager
 alertmanager:
   replicas: 3
