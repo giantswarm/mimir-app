@@ -55,3 +55,4 @@ spec:
     users:
       name: {{ $route.auth.secret }}
 {{- end }}
+{{- end }}
