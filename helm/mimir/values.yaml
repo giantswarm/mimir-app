@@ -134,7 +134,8 @@ routes:
     hostnames: []
     # - my-filter.example.com
     parentRefs: []
-    # - name: acme-gw
+    # - name: giantswarm-default
+    #   namespace: envoy-gateway-system
 
     matches:
       - path:
@@ -147,9 +148,10 @@ routes:
     ## Additional custom rules that can be added to the route
     additionalRules: []
 
-    auth:
-      enabled: true
-      secret: mimir-gateway-auth
+    securityPolicies: []
+    # basicAuth:
+    #   users:
+    #     name: <secret_name>
 
 
 # Default configuration for HA alertmanager
