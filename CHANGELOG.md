@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade chart to version [6.0.3](https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#600)
+- Upgrade mimir to [3.0.0](https://github.com/grafana/mimir/blob/main/CHANGELOG.md#300)
+
 ## [0.21.0] - 2025-10-02
 
 ### Fixed
