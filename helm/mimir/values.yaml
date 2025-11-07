@@ -147,6 +147,22 @@ mimir:
   image:
     repository: gsoci.azurecr.io/giantswarm/mimir
 
+  mimir:
+    structuredConfig:
+      ingest_storage:
+        enabled: false
+        kafka:
+          address: null
+          topic: null
+          auto_create_topic_default_partitions: null
+      distributor:
+        remote_timeout: null
+      ingester:
+        push_grpc_method_enabled: null
+
+  kafka:
+    enabled: false
+
   rbac:
     podSecurityPolicy:
       readOnlyRootFilesystem: false
