@@ -12,7 +12,7 @@ sources:
 dependencies:
   - name: mimir-distributed
     alias: mimir
-    version: 6.0.3
+    version: 6.0.5
     repository: https://grafana.github.io/helm-charts
     condition: mimir.enabled
 version: 0.21.0
