@@ -131,11 +131,8 @@ routes:
     annotations: {}
     labels: {}
 
-    hostnames:
-    - mimir.golem.gaws.gigantic.io
+    hostnames: []
     parentRefs: []
-    # - name: giantswarm-default
-    #   namespace: envoy-gateway-system
 
     matches:
       - path:
@@ -150,6 +147,8 @@ routes:
 
     securityPolicy:
       enabled: false
+      annotations: {}
+      labels: {}
       # basicAuth:
       #   users:
       #     name: <secret_name>
