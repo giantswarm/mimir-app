@@ -148,10 +148,11 @@ routes:
     ## Additional custom rules that can be added to the route
     additionalRules: []
 
-    securityPolicies: []
-    # basicAuth:
-    #   users:
-    #     name: <secret_name>
+    securityPolicy:
+      enabled: false
+      basicAuth:
+        users:
+          name: <secret_name>
 
 
 # Default configuration for HA alertmanager
