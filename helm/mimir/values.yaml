@@ -150,9 +150,9 @@ routes:
 
     securityPolicy:
       enabled: false
-      basicAuth:
-        users:
-          name: <secret_name>
+      # basicAuth:
+      #   users:
+      #     name: <secret_name>
 
 # Default configuration for HA alertmanager
 alertmanager:
