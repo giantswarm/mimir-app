@@ -154,7 +154,6 @@ routes:
         users:
           name: <secret_name>
 
-
 # Default configuration for HA alertmanager
 alertmanager:
   replicas: 3
