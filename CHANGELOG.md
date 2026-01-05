@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add Gateway API and Envoy Gateway resources
 
+### Fixed
+
+- Fix vertical pod autoscaler maxAllowed schema
+
 ## [0.21.0] - 2025-10-02
 
 ### Fixed
