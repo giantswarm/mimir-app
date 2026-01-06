@@ -342,7 +342,7 @@ mimir:
         cpu: 100m
         memory: 256Mi
       maxAllowed:
-        cpu: 1
+        cpu: 1000m
         memory: 2Gi
 
     # -- Pod Disruption Budget for store-gateway, this will be applied across availability zones to prevent losing redundancy
@@ -401,7 +401,7 @@ mimir:
         cpu: 100m
         memory: 500Mi
       maxAllowed:
-        cpu: 1
+        cpu: 1000m
         memory: 2Gi
 
   index-cache:
