@@ -109,7 +109,7 @@ spec:
     kind: {{ $route.kind | default "HTTPRoute" }}
     name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
   requestBuffer:
-    limit: {{ $trafficPolicy.requestBuffer.limit | default "50m" }}
+    limit: {{ $trafficPolicy.requestBuffer.limit | default "50Mi" }}
 {{- end }}
 {{- end }}
 {{- end }}

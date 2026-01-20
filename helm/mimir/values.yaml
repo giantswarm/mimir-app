@@ -158,7 +158,7 @@ routes:
       annotations: {}
       labels: {}
       requestBuffer:
-        limit: 50m
+        limit: 50Mi
 
 # Default configuration for HA alertmanager
 alertmanager:
