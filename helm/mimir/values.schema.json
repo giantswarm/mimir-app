@@ -658,6 +658,14 @@
                                     }
                                 }
                             }
+                        },
+                        "service": {
+                            "type": "object",
+                            "properties": {
+                                "nameOverride": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 },

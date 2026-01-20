@@ -457,6 +457,9 @@ mimir:
     # -- Number of replicas for the Deployment
     replicas: 1
 
+    service:
+      nameOverride: ""
+
     securityContext:
       seccompProfile:
         type: RuntimeDefault
