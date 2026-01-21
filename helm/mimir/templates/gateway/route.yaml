@@ -1,13 +1,14 @@
 {{- if .Values.routes.gateway.enabled -}}
-{{- $route := .Values.routes.gateway }}
+{{- range $name, $route := .Values.routes }}
+  {{- if $route.enabled -}}
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: {{ $route.kind | default "HTTPRoute" }}
 metadata:
-  name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" . "component" "gateway") ) }}
+  name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}{{ if ne $name "main" }}-{{ $name }}{{ end }}
   namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "mimir.labels" (dict "ctx" . "component" "gateway") | nindent 4 }}
+    {{- include "mimir.labels" (dict "ctx" $ "component" "gateway") | nindent 4 }}
     {{- with $route.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
@@ -29,7 +30,7 @@ spec:
     {{- tpl (toYaml $route.additionalRules) $ | nindent 4 }}
     {{- end }}
     - backendRefs:
-        - name: {{ .Values.mimir.gateway.service.nameOverride | default (include "mimir.resourceName" (dict "ctx" . "component" "gateway") ) }}
+        - name: {{ $.Values.mimir.gateway.service.nameOverride | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
           {{- /* port: {{ $.Values.mimir.gateway.service.port }} */}}
           port: 80
       {{- with $route.filters }}
@@ -40,7 +41,7 @@ spec:
       matches:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-{{- if and $route.securityPolicy $route.securityPolicy.enabled }}
+  {{- if and $route.enabled $route.securityPolicy.enabled }}
 {{- $policy := $route.securityPolicy }}
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
@@ -85,5 +86,32 @@ spec:
   authorization:
     {{- toYaml . | nindent 4 }}
   {{ end }}
+  {{- if and $route.enabled $route.backendTrafficPolicy.enabled }}
+{{ $trafficPolicy := $route.backendTrafficPolicy }}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  labels:
+    {{- include "mimir.labels" (dict "ctx" $ "component" "gateway") | nindent 4 }}
+    {{- with $trafficPolicy.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $trafficPolicy.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: {{ $route.kind | default "HTTPRoute" }}
+    name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
+  requestBuffer:
+    limit: {{ $trafficPolicy.requestBuffer.limit | default "50Mi" }}
+{{- end }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}
