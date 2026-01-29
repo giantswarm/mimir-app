@@ -352,15 +352,6 @@ mimir:
         cpu: 1000m
         memory: 2Gi
 
-    verticalAutoscaling:
-      enabled: true
-      minAllowed:
-        cpu: 100m
-        memory: 512Mi
-      maxAllowed:
-        cpu: 1
-        memory: 2Gi
-
     # -- Pod Disruption Budget for store-gateway, this will be applied across availability zones to prevent losing redundancy
     podDisruptionBudget:
       maxUnavailable: 1
@@ -477,3 +468,62 @@ mimir:
       image:
         registry: gsoci.azurecr.io
         repository: giantswarm/nginx-unprivileged
+
+
+# -- Crossplane configuration for automated infrastructure provisioning
+crossplane:
+  # -- Enable Crossplane resources
+  enabled: false
+  # -- Crossplane provider (e.g., aws, azure)
+  provider: aws
+  # -- Crossplane ProviderConfig name
+  providerConfigRef: "default"
+  # -- Cloud region for resources
+  region: ""
+  # -- Cluster name (used for cluster discovery)
+  clusterName: ""
+  # -- Cluster namespace (used for cluster discovery)
+  clusterNamespace: "org-giantswarm"
+  # -- Enable observe-only mode for safe migration
+  observeOnly: false
+  # -- Additional tags to apply to all storage resources
+  # Tags from cluster CR will be merged automatically
+  tags: []
+  # - key: team
+  #   value: atlas
+  aws:
+    # -- Enable AWS Crossplane resources
+    enabled: false
+    # -- Bucket configuration for Mimir storage (main blocks bucket)
+    mimir:
+      # -- Bucket name for Mimir blocks storage
+      name: ""
+      # -- Lifecycle expiration in days
+      lifecycleDays: 100
+      # -- Additional tags specific to this bucket (same format as crossplane.tags)
+      tags: []
+      # Example:
+      # tags:
+      #   - key: team
+      #     value: platform
+    # -- Bucket configuration for Ruler storage
+    ruler:
+      # -- Bucket name for Ruler storage
+      name: ""
+      # -- Lifecycle expiration in days
+      lifecycleDays: 100
+      # -- Additional tags specific to this bucket
+      tags: []
+    # -- Bucket configuration for Alertmanager storage
+    alertmanager:
+      # -- Bucket name for Alertmanager storage
+      name: ""
+      # -- Lifecycle expiration in days
+      lifecycleDays: 100
+      # -- Additional tags specific to this bucket
+      tags: []
+    # -- IAM Role configuration for IRSA
+    # Role names will be the same as the bucket names
+    iam:
+      # -- Enable IAM role creation via Crossplane
+      enabled: true

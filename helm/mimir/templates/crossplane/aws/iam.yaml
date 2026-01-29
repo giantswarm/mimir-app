@@ -1,0 +1,14 @@
+{{- if and (include "mimir.crossplane.aws.enabled" .) .Values.crossplane.aws.iam.enabled }}
+{{- /* Mimir IAM Role - access to mimir bucket only */ -}}
+{{- if .Values.crossplane.aws.mimir.name }}
+{{ include "mimir.crossplane.iamRole" (dict "root" . "bucketNames" (list .Values.crossplane.aws.mimir.name) "roleName" .Values.crossplane.aws.mimir.name "component" "mimir" "serviceAccount" "mimir" "bucketTags" .Values.crossplane.aws.mimir.tags) }}
+{{- end }}
+{{- /* Ruler IAM Role - access to ruler bucket + mimir bucket */ -}}
+{{- if .Values.crossplane.aws.ruler.name }}
+{{ include "mimir.crossplane.iamRole" (dict "root" . "bucketNames" (list .Values.crossplane.aws.ruler.name .Values.crossplane.aws.mimir.name) "roleName" .Values.crossplane.aws.ruler.name "component" "ruler" "serviceAccount" "mimir-ruler" "bucketTags" .Values.crossplane.aws.ruler.tags) }}
+{{- end }}
+{{- /* Alertmanager IAM Role - access to alertmanager bucket + mimir bucket */ -}}
+{{- if .Values.crossplane.aws.alertmanager.name }}
+{{ include "mimir.crossplane.iamRole" (dict "root" . "bucketNames" (list .Values.crossplane.aws.alertmanager.name .Values.crossplane.aws.mimir.name) "roleName" .Values.crossplane.aws.alertmanager.name "component" "alertmanager" "serviceAccount" "mimir-alertmanager" "bucketTags" .Values.crossplane.aws.alertmanager.tags) }}
+{{- end }}
+{{- end }}

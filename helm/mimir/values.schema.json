@@ -5,62 +5,110 @@
         "alertmanager": {
             "type": "object",
             "properties": {
+                "replicas": {
+                    "type": "integer"
+                },
                 "affinity": {
+                    "type": "object"
+                }
+            }
+        },
+        "crossplane": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "providerConfigRef": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "clusterName": {
+                    "type": "string"
+                },
+                "clusterNamespace": {
+                    "type": "string"
+                },
+                "observeOnly": {
+                    "type": "boolean"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["key", "value"]
+                    }
+                },
+                "aws": {
                     "type": "object",
                     "properties": {
-                        "podAntiAffinity": {
+                        "enabled": {
+                            "type": "boolean"
+                        },
+                        "mimir": {
                             "type": "object",
                             "properties": {
-                                "preferredDuringSchedulingIgnoredDuringExecution": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "podAffinityTerm": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "labelSelector": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "matchExpressions": {
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                        "key": {
-                                                                            "type": "string"
-                                                                        },
-                                                                        "operator": {
-                                                                            "type": "string"
-                                                                        },
-                                                                        "values": {
-                                                                            "type": "array",
-                                                                            "items": {
-                                                                                "type": "string"
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    },
-                                                    "topologyKey": {
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            },
-                                            "weight": {
-                                                "type": "integer"
-                                            }
-                                        }
-                                    }
+                                "name": {
+                                    "type": "string"
+                                },
+                                "lifecycleDays": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "ruler": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "lifecycleDays": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "alertmanager": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "lifecycleDays": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "iam": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "mimirRoleName": {
+                                    "type": "string"
+                                },
+                                "rulerRoleName": {
+                                    "type": "string"
+                                },
+                                "alertmanagerRoleName": {
+                                    "type": "string"
                                 }
                             }
                         }
                     }
-                },
-                "replicas": {
-                    "type": "integer"
                 }
             }
         },

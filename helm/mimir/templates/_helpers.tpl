@@ -32,40 +32,45 @@ Params:
   rolloutZoneName = rollout zone name (optional)
 */}}
 {{- define "mimir.labels" -}}
-application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
-{{ if .ctx.Values.enterprise.legacyLabels }}
-{{- if .component -}}
-app: {{ include "mimir.name" .ctx }}-{{ .component }}
+{{- $component := .component -}}
+{{- $memberlist := .memberlist -}}
+{{- $rolloutZoneName := .rolloutZoneName -}}
+{{- with .ctx }}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+{{ if .Values.enterprise.legacyLabels }}
+{{- if $component -}}
+app: {{ include "mimir.name" . }}-{{ $component }}
 {{- else -}}
-app: {{ include "mimir.name" .ctx }}
+app: {{ include "mimir.name" . }}
 {{- end }}
-chart: {{ template "mimir.chart" .ctx }}
-heritage: {{ .ctx.Release.Service }}
-release: {{ .ctx.Release.Name }}
+chart: {{ template "mimir.chart" . }}
+heritage: {{ .Release.Service }}
+release: {{ .Release.Name }}
 
 {{- else -}}
 
-helm.sh/chart: {{ include "mimir.chart" .ctx }}
-app.kubernetes.io/name: {{ include "mimir.name" .ctx }}
-app.kubernetes.io/instance: {{ .ctx.Release.Name }}
-{{- if .component }}
-app.kubernetes.io/component: {{ .component }}
+helm.sh/chart: {{ include "mimir.chart" . }}
+app.kubernetes.io/name: {{ include "mimir.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- if $component }}
+app.kubernetes.io/component: {{ $component }}
 {{- end }}
-{{- if .memberlist }}
+{{- if $memberlist }}
 app.kubernetes.io/part-of: memberlist
 {{- end }}
-{{- if .ctx.Chart.AppVersion }}
-app.kubernetes.io/version: {{ .ctx.Chart.AppVersion | quote }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-app.kubernetes.io/managed-by: {{ .ctx.Release.Service }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
-{{- if .rolloutZoneName }}
-{{-   if not .component }}
-{{-     printf "Component name cannot be empty if rolloutZoneName (%s) is set" .rolloutZoneName | fail }}
+{{- if $rolloutZoneName }}
+{{-   if not $component }}
+{{-     printf "Component name cannot be empty if rolloutZoneName (%s) is set" $rolloutZoneName | fail }}
 {{-   end }}
-name: "{{ .component }}-{{ .rolloutZoneName }}" {{- /* Currently required for rollout-operator. https://github.com/grafana/rollout-operator/issues/15 */}}
-rollout-group: {{ .component }}
-zone: {{ .rolloutZoneName }}
+name: "{{ $component }}-{{ $rolloutZoneName }}" {{- /* Currently required for rollout-operator. https://github.com/grafana/rollout-operator/issues/15 */}}
+rollout-group: {{ $component }}
+zone: {{ $rolloutZoneName }}
+{{- end }}
 {{- end }}
 {{- end -}}
 
@@ -78,48 +83,54 @@ Params:
   rolloutZoneName = rollout zone name (optional)
 */}}
 {{- define "mimir.podLabels" -}}
-application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
-{{ with .ctx.Values.global.podLabels -}}
+{{- $component := .component -}}
+{{- $memberlist := .memberlist -}}
+{{- $rolloutZoneName := .rolloutZoneName -}}
+{{- $root := . -}}
+{{- with .ctx }}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+{{ with .Values.global.podLabels -}}
 {{ toYaml . }}
 {{ end }}
-{{ if .ctx.Values.enterprise.legacyLabels }}
-{{- if .component -}}
-app: {{ include "mimir.name" .ctx }}-{{ .component }}
-{{- if not .rolloutZoneName }}
-name: {{ .component }}
+{{ if .Values.enterprise.legacyLabels }}
+{{- if $component -}}
+app: {{ include "mimir.name" . }}-{{ $component }}
+{{- if not $rolloutZoneName }}
+name: {{ $component }}
 {{- end }}
 {{- end }}
-{{- if .memberlist }}
+{{- if $memberlist }}
 gossip_ring_member: "true"
 {{- end -}}
-{{- if .component }}
-target: {{ .component }}
-release: {{ .ctx.Release.Name }}
+{{- if $component }}
+target: {{ $component }}
+release: {{ .Release.Name }}
 {{- end }}
 {{- else -}}
-helm.sh/chart: {{ include "mimir.chart" .ctx }}
-app.kubernetes.io/name: {{ include "mimir.name" .ctx }}
-app.kubernetes.io/instance: {{ .ctx.Release.Name }}
-app.kubernetes.io/version: {{ .ctx.Chart.AppVersion | quote }}
-app.kubernetes.io/managed-by: {{ .ctx.Release.Service }}
-{{- if .component }}
-app.kubernetes.io/component: {{ .component }}
+helm.sh/chart: {{ include "mimir.chart" . }}
+app.kubernetes.io/name: {{ include "mimir.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- if $component }}
+app.kubernetes.io/component: {{ $component }}
 {{- end }}
-{{- if .memberlist }}
+{{- if $memberlist }}
 app.kubernetes.io/part-of: memberlist
 {{- end }}
 {{- end }}
-{{- $componentSection := include "mimir.componentSectionFromName" . | fromYaml }}
+{{- end }}
+{{- $componentSection := include "mimir.componentSectionFromName" $root | fromYaml }}
 {{- with ($componentSection).podLabels }}
 {{ toYaml . }}
 {{- end }}
-{{- if .rolloutZoneName }}
-{{-   if not .component }}
-{{-     printf "Component name cannot be empty if rolloutZoneName (%s) is set" .rolloutZoneName | fail }}
+{{- if $rolloutZoneName }}
+{{-   if not $component }}
+{{-     printf "Component name cannot be empty if rolloutZoneName (%s) is set" $rolloutZoneName | fail }}
 {{-   end }}
-name: "{{ .component }}-{{ .rolloutZoneName }}" {{- /* Currently required for rollout-operator. https://github.com/grafana/rollout-operator/issues/15 */}}
-rollout-group: {{ .component }}
-zone: {{ .rolloutZoneName }}
+name: "{{ $component }}-{{ $rolloutZoneName }}" {{- /* Currently required for rollout-operator. https://github.com/grafana/rollout-operator/issues/15 */}}
+rollout-group: {{ $component }}
+zone: {{ $rolloutZoneName }}
 {{- end }}
 {{- end -}}
 
