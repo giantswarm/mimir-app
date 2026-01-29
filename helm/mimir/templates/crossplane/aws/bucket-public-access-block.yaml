@@ -1,0 +1,14 @@
+{{- if include "mimir.crossplane.aws.enabled" . }}
+{{- /* Mimir bucket public access block */ -}}
+{{- if .Values.crossplane.aws.mimir.name }}
+{{ include "mimir.crossplane.bucketPublicAccessBlock" (dict "root" . "bucketName" .Values.crossplane.aws.mimir.name "component" "mimir") }}
+{{- end }}
+{{- /* Ruler bucket public access block */ -}}
+{{- if .Values.crossplane.aws.ruler.name }}
+{{ include "mimir.crossplane.bucketPublicAccessBlock" (dict "root" . "bucketName" .Values.crossplane.aws.ruler.name "component" "ruler") }}
+{{- end }}
+{{- /* Alertmanager bucket public access block */ -}}
+{{- if .Values.crossplane.aws.alertmanager.name }}
+{{ include "mimir.crossplane.bucketPublicAccessBlock" (dict "root" . "bucketName" .Values.crossplane.aws.alertmanager.name "component" "alertmanager") }}
+{{- end }}
+{{- end }}
