@@ -1272,6 +1272,42 @@
                         "hostnames": {
                             "type": "array"
                         },
+                        "httpRouteFilter": {
+                            "type": "object",
+                            "properties": {
+                                "annotations": {
+                                    "type": "object"
+                                },
+                                "directResponse": {
+                                    "type": "object",
+                                    "properties": {
+                                        "body": {
+                                            "type": "object",
+                                            "properties": {
+                                                "inline": {
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "contentType": {
+                                            "type": "string"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "labels": {
+                                    "type": "object"
+                                }
+                            }
+                        },
                         "kind": {
                             "type": "string"
                         },
