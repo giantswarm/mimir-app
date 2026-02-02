@@ -160,6 +160,17 @@ routes:
       requestBuffer:
         limit: 50Mi
 
+    httpRouteFilter:
+      enabled: false
+      annotations: {}
+      labels: {}
+      directResponse:
+        contentType: text/plain
+        statusCode: 400
+        body:
+          type: Inline
+          inline: "Bad Request"
+
 # Default configuration for HA alertmanager
 alertmanager:
   replicas: 3
