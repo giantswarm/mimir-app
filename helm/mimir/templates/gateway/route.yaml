@@ -1,11 +1,11 @@
 {{- if .Values.routes.gateway.enabled -}}
-{{- range $name, $route := .Values.routes }}
-  {{- if $route.enabled -}}
+{{- $route := .Values.routes.gateway }}
+
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: {{ $route.kind | default "HTTPRoute" }}
 metadata:
-  name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}{{ if ne $name "main" }}-{{ $name }}{{ end }}
+  name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "mimir.labels" (dict "ctx" $ "component" "gateway") | nindent 4 }}
@@ -31,7 +31,6 @@ spec:
     {{- end }}
     - backendRefs:
         - name: {{ $.Values.mimir.gateway.service.nameOverride | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
-          {{- /* port: {{ $.Values.mimir.gateway.service.port }} */}}
           port: 80
       {{- with $route.filters }}
       filters:
@@ -41,13 +40,14 @@ spec:
       matches:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if and $route.enabled $route.securityPolicy.enabled }}
+
+{{- if and $route.securityPolicy $route.securityPolicy.enabled }}
 {{- $policy := $route.securityPolicy }}
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: SecurityPolicy
 metadata:
-  name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
+  name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}
   labels:
     {{- include "mimir.labels" (dict "ctx" $ "component" "gateway") | nindent 4 }}
     {{- with $policy.labels }}
@@ -61,32 +61,34 @@ spec:
   targetRefs:
     - group: gateway.networking.k8s.io
       kind: {{ $route.kind | default "HTTPRoute" }}
-      name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
-  {{ with $policy.basicAuth }}
+      name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}
+  {{- with $policy.basicAuth }}
   basicAuth:
     {{- toYaml . | nindent 4 }}
   {{ end }}
-  {{ with $policy.cors }}
+  {{- with $policy.cors }}
   cors:
     {{- toYaml . | nindent 4 }}
   {{ end }}
-  {{ with $policy.jwt }}
+  {{- with $policy.jwt }}
   jwt:
     {{- toYaml . | nindent 4 }}
   {{ end }}
-  {{ with $policy.oidc }}
+  {{- with $policy.oidc }}
   oidc:
     {{- toYaml . | nindent 4 }}
   {{ end }}
-  {{ with $policy.extAuth }}
+  {{- with $policy.extAuth }}
   extAuth:
     {{- toYaml . | nindent 4 }}
   {{ end }}
-  {{ with $policy.authorization }}
+  {{- with $policy.authorization }}
   authorization:
     {{- toYaml . | nindent 4 }}
   {{ end }}
-  {{- if and $route.enabled $route.backendTrafficPolicy.enabled }}
+{{ end }}
+
+{{- if and $route.backendTrafficPolicy $route.backendTrafficPolicy.enabled }}
 {{ $trafficPolicy := $route.backendTrafficPolicy }}
 ---
 apiVersion: gateway.envoyproxy.io/v1alpha1
@@ -101,17 +103,39 @@ metadata:
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
-  name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
+  name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}
   namespace: {{ $.Release.Namespace }}
 spec:
   targetRefs:
   - group: gateway.networking.k8s.io
     kind: {{ $route.kind | default "HTTPRoute" }}
-    name: {{ $route.name | default (include "mimir.resourceName" (dict "ctx" $ "component" "gateway") ) }}
+    name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}
   requestBuffer:
     limit: {{ $trafficPolicy.requestBuffer.limit | default "50Mi" }}
 {{- end }}
+
+{{- if and $route.httpRouteFilter $route.httpRouteFilter.enabled }}
+{{ $filter := $route.httpRouteFilter }}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: HTTPRouteFilter
+metadata:
+  labels:
+    {{- include "mimir.labels" (dict "ctx" $ "component" "gateway") | nindent 4 }}
+    {{- with $filter.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $filter.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  name: {{ include "mimir.resourceName" (dict "ctx" $ "component" "gateway") }}
+  namespace: {{ $.Release.Namespace }}
+spec:
+  {{- with $filter.directResponse }}
+  directResponse:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 {{- end }}
-{{- end }}
-{{- end }}
+
 {{- end }}
