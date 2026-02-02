@@ -1,4 +1,4 @@
-{{- if include "mimir.crossplane.aws.enabled" . }}
+{{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAWS" .) .Values.crossplane.aws.enabled }}
 {{- /* Mimir bucket policy */ -}}
 {{- if .Values.crossplane.aws.mimir.name }}
 {{ include "mimir.crossplane.bucketPolicy" (dict "root" . "bucketName" .Values.crossplane.aws.mimir.name "component" "mimir") }}

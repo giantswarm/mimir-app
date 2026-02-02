@@ -16,8 +16,7 @@ metadata:
   name: {{ .bucketName }}
   namespace: {{ .root.Release.Namespace }}
   labels:
-    {{- include "mimir.crossplane.labels" .root | nindent 4 }}
-    app.kubernetes.io/component: {{ .component }}
+    {{- include "mimir.labels" (dict "ctx" .root "component" .component) | nindent 4 }}
   annotations:
     crossplane.io/external-name: {{ .bucketName }}
 spec:
@@ -54,8 +53,7 @@ metadata:
   annotations:
     crossplane.io/external-name: {{ .bucketName }}
   labels:
-    {{- include "mimir.crossplane.labels" .root | nindent 4 }}
-    app.kubernetes.io/component: {{ .component }}
+    {{- include "mimir.labels" (dict "ctx" .root "component" .component) | nindent 4 }}
 spec:
   managementPolicies:
     {{- if .root.Values.crossplane.observeOnly }}
@@ -90,8 +88,7 @@ metadata:
   annotations:
     crossplane.io/external-name: {{ .bucketName }}
   labels:
-    {{- include "mimir.crossplane.labels" .root | nindent 4 }}
-    app.kubernetes.io/component: {{ .component }}
+    {{- include "mimir.labels" (dict "ctx" .root "component" .component) | nindent 4 }}
 spec:
   managementPolicies:
     {{- if .root.Values.crossplane.observeOnly }}
@@ -124,8 +121,7 @@ metadata:
   name: {{ .bucketName }}
   namespace: {{ .root.Release.Namespace }}
   labels:
-    {{- include "mimir.crossplane.labels" .root | nindent 4 }}
-    app.kubernetes.io/component: {{ .component }}
+    {{- include "mimir.labels" (dict "ctx" .root "component" .component) | nindent 4 }}
   annotations:
     crossplane.io/external-name: {{ .bucketName }}
 spec:
@@ -185,8 +181,7 @@ metadata:
   name: {{ .roleName }}
   namespace: {{ .root.Release.Namespace }}
   labels:
-    {{- include "mimir.crossplane.labels" .root | nindent 4 }}
-    app.kubernetes.io/component: {{ .component }}
+    {{- include "mimir.labels" (dict "ctx" .root "component" .component) | nindent 4 }}
   annotations:
     crossplane.io/external-name: {{ .roleName }}
 spec:

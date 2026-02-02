@@ -66,6 +66,21 @@
                                 },
                                 "lifecycleDays": {
                                     "type": "integer"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "key": {
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["key", "value"]
+                                    }
                                 }
                             }
                         },
@@ -77,6 +92,21 @@
                                 },
                                 "lifecycleDays": {
                                     "type": "integer"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "key": {
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["key", "value"]
+                                    }
                                 }
                             }
                         },
@@ -88,6 +118,21 @@
                                 },
                                 "lifecycleDays": {
                                     "type": "integer"
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "key": {
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": ["key", "value"]
+                                    }
                                 }
                             }
                         },
@@ -96,15 +141,6 @@
                             "properties": {
                                 "enabled": {
                                     "type": "boolean"
-                                },
-                                "mimirRoleName": {
-                                    "type": "string"
-                                },
-                                "rulerRoleName": {
-                                    "type": "string"
-                                },
-                                "alertmanagerRoleName": {
-                                    "type": "string"
                                 }
                             }
                         }

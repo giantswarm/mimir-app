@@ -1,31 +1,4 @@
 {{/*
-Crossplane enabled check
-*/}}
-{{- define "mimir.crossplane.enabled" -}}
-{{- if and .Values.crossplane.enabled .Values.crossplane.clusterName -}}
-true
-{{- end -}}
-{{- end -}}
-
-{{/*
-Crossplane is AWS
-*/}}
-{{- define "mimir.crossplane.isAWS" -}}
-{{- if eq .Values.crossplane.provider "aws" -}}
-true
-{{- end -}}
-{{- end -}}
-
-{{/*
-Check if Crossplane AWS is enabled
-*/}}
-{{- define "mimir.crossplane.aws.enabled" -}}
-{{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAWS" .) .Values.crossplane.aws.enabled -}}
-true
-{{- end -}}
-{{- end -}}
-
-{{/*
 Get AWS Account ID from AWSCluster identity
 Supports both AWSClusterRoleIdentity and AWSClusterControllerIdentity
 */}}
@@ -86,58 +59,4 @@ First tries annotation aws.giantswarm.io/irsa-trust-domains, then falls back to 
   {{- end -}}
 {{- end -}}
 {{- $oidcProvider -}}
-{{- end -}}
-
-{{/*
-Merge tags from cluster CR with user-provided tags
-Returns tags as a map: {foo: "bar"}
-*/}}
-{{- define "mimir.crossplane.tags" -}}
-{{- $clusterName := .Values.crossplane.clusterName -}}
-{{- $clusterNamespace := .Values.crossplane.clusterNamespace -}}
-{{- $provider := .Values.crossplane.provider -}}
-{{- $tags := dict -}}
-{{- if eq $provider "aws" -}}
-  {{- $awsCluster := lookup "infrastructure.cluster.x-k8s.io/v1beta2" "AWSCluster" $clusterNamespace $clusterName -}}
-  {{- if $awsCluster -}}
-    {{- if $awsCluster.spec.additionalTags -}}
-      {{- range $key, $value := $awsCluster.spec.additionalTags -}}
-        {{- $_ := set $tags $key $value -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-{{- else if eq $provider "azure" -}}
-  {{- $azureCluster := lookup "infrastructure.cluster.x-k8s.io/v1beta1" "AzureCluster" $clusterNamespace $clusterName -}}
-  {{- if $azureCluster -}}
-    {{- if $azureCluster.spec.additionalTags -}}
-      {{- range $key, $value := $azureCluster.spec.additionalTags -}}
-        {{- $_ := set $tags $key $value -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-{{- $defaultTags := dict
-  "app" "mimir"
-  "managed-by" "crossplane"
--}}
-{{- $tags = merge $tags $defaultTags -}}
-{{- $userTags := .Values.crossplane.tags | default list -}}
-{{- range $tag := $userTags -}}
-  {{- $_ := set $tags (index $tag "key") (index $tag "value") -}}
-{{- end -}}
-{{- $tags | toYaml -}}
-{{- end -}}
-
-{{/*
-Crossplane simple labels for crossplane resources
-*/}}
-{{- define "mimir.crossplane.labels" -}}
-helm.sh/chart: {{ include "mimir.chart" . }}
-app.kubernetes.io/name: {{ include "mimir.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
 {{- end -}}

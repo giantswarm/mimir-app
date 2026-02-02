@@ -514,6 +514,10 @@ crossplane:
       lifecycleDays: 100
       # -- Additional tags specific to this bucket
       tags: []
+      # Example:
+      # tags:
+      #   - key: team
+      #     value: platform
     # -- Bucket configuration for Alertmanager storage
     alertmanager:
       # -- Bucket name for Alertmanager storage
@@ -522,6 +526,10 @@ crossplane:
       lifecycleDays: 100
       # -- Additional tags specific to this bucket
       tags: []
+      # Example:
+      # tags:
+      #   - key: team
+      #     value: platform
     # -- IAM Role configuration for IRSA
     # Role names will be the same as the bucket names
     iam:

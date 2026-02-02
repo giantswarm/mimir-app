@@ -1,4 +1,4 @@
-{{- if and (include "mimir.crossplane.aws.enabled" .) .Values.crossplane.aws.iam.enabled }}
+{{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAWS" .) .Values.crossplane.aws.enabled .Values.crossplane.aws.iam.enabled }}
 {{- /* Mimir IAM Role - access to mimir bucket only */ -}}
 {{- if .Values.crossplane.aws.mimir.name }}
 {{ include "mimir.crossplane.iamRole" (dict "root" . "bucketNames" (list .Values.crossplane.aws.mimir.name) "roleName" .Values.crossplane.aws.mimir.name "component" "mimir" "serviceAccount" "mimir" "bucketTags" .Values.crossplane.aws.mimir.tags) }}
