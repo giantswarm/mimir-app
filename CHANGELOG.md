@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.24.0] - 2026-02-03
+
 ### Added
 
 - Add Crossplane support for AWS S3 bucket provisioning with the following resources:
@@ -309,7 +311,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.23.1...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.24.0...HEAD
+[0.24.0]: https://github.com/giantswarm/mimir-app/compare/v0.23.1...v0.24.0
 [0.23.1]: https://github.com/giantswarm/mimir-app/compare/v0.23.0...v0.23.1
 [0.23.0]: https://github.com/giantswarm/mimir-app/compare/v0.22.0...v0.23.0
 [0.22.0]: https://github.com/giantswarm/mimir-app/compare/v0.21.0...v0.22.0
