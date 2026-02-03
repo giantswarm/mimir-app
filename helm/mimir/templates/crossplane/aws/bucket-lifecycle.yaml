@@ -1,0 +1,14 @@
+{{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAWS" .) .Values.crossplane.aws.enabled }}
+{{- /* Mimir bucket lifecycle */ -}}
+{{- if .Values.crossplane.aws.mimir.name }}
+{{ include "mimir.crossplane.bucketLifecycle" (dict "root" . "bucketName" .Values.crossplane.aws.mimir.name "component" "mimir" "lifecycleDays" .Values.crossplane.aws.mimir.lifecycleDays) }}
+{{- end }}
+{{- /* Ruler bucket lifecycle */ -}}
+{{- if .Values.crossplane.aws.ruler.name }}
+{{ include "mimir.crossplane.bucketLifecycle" (dict "root" . "bucketName" .Values.crossplane.aws.ruler.name "component" "ruler" "lifecycleDays" .Values.crossplane.aws.ruler.lifecycleDays) }}
+{{- end }}
+{{- /* Alertmanager bucket lifecycle */ -}}
+{{- if .Values.crossplane.aws.alertmanager.name }}
+{{ include "mimir.crossplane.bucketLifecycle" (dict "root" . "bucketName" .Values.crossplane.aws.alertmanager.name "component" "alertmanager" "lifecycleDays" .Values.crossplane.aws.alertmanager.lifecycleDays) }}
+{{- end }}
+{{- end }}

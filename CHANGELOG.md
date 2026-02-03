@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add Crossplane support for AWS S3 bucket provisioning with the following resources:
+  - S3 Buckets for mimir, ruler, and alertmanager storage
+  - BucketLifecycleConfiguration for automatic object expiration
+  - BucketPublicAccessBlock for security hardening
+  - BucketPolicy enforcing SSL/TLS connections
+  - IAM Roles with IRSA (IAM Roles for Service Accounts) support
+- Crossplane resources support dynamic AWS account ID and OIDC provider discovery from cluster CRs
+- Tags from AWSCluster CR are automatically merged with user-provided tags
+- Observe-only mode for safe migration of existing resources
+
 ## [0.23.1] - 2026-02-02
 
 ### Changed

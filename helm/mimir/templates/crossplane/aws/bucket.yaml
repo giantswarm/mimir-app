@@ -1,0 +1,14 @@
+{{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAWS" .) .Values.crossplane.aws.enabled }}
+{{- /* Mimir bucket */ -}}
+{{- if .Values.crossplane.aws.mimir.name }}
+{{ include "mimir.crossplane.bucket" (dict "root" . "bucketName" .Values.crossplane.aws.mimir.name "component" "mimir" "bucketTags" .Values.crossplane.aws.mimir.tags) }}
+{{- end }}
+{{- /* Ruler bucket */ -}}
+{{- if .Values.crossplane.aws.ruler.name }}
+{{ include "mimir.crossplane.bucket" (dict "root" . "bucketName" .Values.crossplane.aws.ruler.name "component" "ruler" "bucketTags" .Values.crossplane.aws.ruler.tags) }}
+{{- end }}
+{{- /* Alertmanager bucket */ -}}
+{{- if .Values.crossplane.aws.alertmanager.name }}
+{{ include "mimir.crossplane.bucket" (dict "root" . "bucketName" .Values.crossplane.aws.alertmanager.name "component" "alertmanager" "bucketTags" .Values.crossplane.aws.alertmanager.tags) }}
+{{- end }}
+{{- end }}
