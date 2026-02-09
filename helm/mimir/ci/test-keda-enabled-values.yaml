@@ -1,0 +1,5 @@
+kedaAutoscaling:
+  querier:
+    enabled: true
+  gateway:
+    enabled: true

@@ -2,26 +2,9 @@ version: 2.1
 orbs:
   architect: giantswarm/architect@6.12.0
 
-jobs:
-  template-chart:
-    docker:
-      - image: giantswarm/helm-chart-testing:v3.14.0
-    steps:
-      - checkout
-      - run: |-
-          cd helm/mimir
-          helm dep up
-          helm template .
-
 workflows:
   package-and-push-chart-on-tag:
     jobs:
-      - template-chart:
-          name: "template-chart"
-          filters:
-            tags:
-              only: /^v.*/
-
       - architect/push-to-app-catalog:
           context: architect
           executor: app-build-suite
@@ -31,8 +14,6 @@ workflows:
           chart: mimir
           ct_config: ".circleci/ct-config.yml"
           persist_chart_archive: true
-          requires:
-            - "template-chart"
           # Trigger job on git tag.
           filters:
             tags:
