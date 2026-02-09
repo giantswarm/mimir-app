@@ -1,4 +1,4 @@
-{{- if .Values.routes.gateway.enabled -}}
+{{- if and .Values.mimir.enabled .Values.routes.gateway.enabled -}}
 {{- $route := .Values.routes.gateway }}
 
 ---
