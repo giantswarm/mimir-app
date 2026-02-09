@@ -1,4 +1,4 @@
-{{- if .Values.kedaAutoscaling.querier.enabled }}
+{{- if and .Values.mimir.enabled .Values.kedaAutoscaling.querier.enabled }}
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
