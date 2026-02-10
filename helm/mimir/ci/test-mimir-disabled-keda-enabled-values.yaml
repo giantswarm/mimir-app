@@ -1,0 +1,7 @@
+mimir:
+  enabled: false
+kedaAutoscaling:
+  querier:
+    enabled: true
+  gateway:
+    enabled: true

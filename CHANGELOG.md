@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- CI: test mimir disabled
+
 ### Fixed
 
 - Disable all mimir objects if mimir is disabled.
