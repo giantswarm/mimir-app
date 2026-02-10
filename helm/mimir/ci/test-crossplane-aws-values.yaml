@@ -1,0 +1,38 @@
+# Test AWS/CAPA Crossplane configuration with S3 buckets and IAM roles
+mimir:
+  enabled: true
+
+crossplane:
+  enabled: true
+  observeOnly: false
+  provider: aws
+  providerConfigRef: test-cluster
+  clusterName: test-cluster
+  clusterNamespace: org-giantswarm
+  region: eu-west-1
+  tags:
+    - key: app
+      value: mimir
+    - key: installation
+      value: test-cluster
+    - key: environment
+      value: test
+  aws:
+    enabled: true
+    mimir:
+      name: giantswarm-test-cluster-mimir
+      tags:
+        - key: name
+          value: giantswarm-test-cluster-mimir
+    ruler:
+      name: giantswarm-test-cluster-mimir-ruler
+      tags:
+        - key: name
+          value: giantswarm-test-cluster-mimir-ruler
+    alertmanager:
+      name: giantswarm-test-cluster-mimir-alertmanager
+      tags:
+        - key: name
+          value: giantswarm-test-cluster-mimir-alertmanager
+    iam:
+      enabled: true

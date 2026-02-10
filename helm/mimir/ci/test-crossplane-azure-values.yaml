@@ -1,0 +1,21 @@
+# Test Azure/CAPZ Crossplane configuration with observe-only mode
+mimir:
+  enabled: true
+
+crossplane:
+  enabled: true
+  observeOnly: true
+  provider: azure
+  providerConfigRef: test-cluster
+  clusterName: test-cluster
+  clusterNamespace: org-giantswarm
+  region: westeurope
+  tags:
+    - key: app
+      value: mimir
+    - key: installation
+      value: test-cluster
+    - key: environment
+      value: test
+  azure:
+    enabled: true

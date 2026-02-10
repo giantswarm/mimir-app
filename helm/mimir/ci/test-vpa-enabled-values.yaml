@@ -1,0 +1,62 @@
+# Test Vertical Pod Autoscaler configuration for Mimir components
+# Tests internal VPA templates for ingester, store-gateway, ruler, and chunks-cache
+mimir:
+  enabled: true
+
+  ingester:
+    verticalAutoscaling:
+      enabled: true
+      updateMode: "Auto"
+      minAllowed:
+        cpu: 100m
+        memory: 512Mi
+      maxAllowed:
+        cpu: 2
+        memory: 8Gi
+
+  store_gateway:
+    verticalAutoscaling:
+      enabled: true
+      updateMode: "Auto"
+      minAllowed:
+        cpu: 100m
+        memory: 256Mi
+      maxAllowed:
+        cpu: 1
+        memory: 2Gi
+
+  ruler:
+    verticalAutoscaling:
+      enabled: true
+      updateMode: "Initial"
+      minAllowed:
+        cpu: 50m
+        memory: 128Mi
+      maxAllowed:
+        cpu: 500m
+        memory: 1Gi
+
+  chunks-cache:
+    enabled: true
+    verticalAutoscaling:
+      enabled: true
+      updateMode: "Auto"
+      minAllowed:
+        cpu: 50m
+        memory: 256Mi
+      maxAllowed:
+        cpu: 500m
+        memory: 1Gi
+
+# Disable other autoscaling to test VPA in isolation
+kedaAutoscaling:
+  querier:
+    enabled: false
+  gateway:
+    enabled: false
+
+hpa:
+  distributor:
+    enabled: false
+  querier:
+    enabled: false

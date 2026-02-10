@@ -1,0 +1,23 @@
+# Test with Gateway Routes disabled (traditional Ingress only)
+# Verifies that route templates are properly skipped when disabled
+mimir:
+  enabled: true
+
+routes:
+  gateway:
+    enabled: false
+
+kedaAutoscaling:
+  querier:
+    enabled: false
+  gateway:
+    enabled: false
+
+hpa:
+  distributor:
+    enabled: false
+  querier:
+    enabled: false
+
+crossplane:
+  enabled: false
