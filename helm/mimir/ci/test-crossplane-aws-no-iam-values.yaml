@@ -1,0 +1,37 @@
+# Test AWS Crossplane configuration without IAM roles
+# Tests bucket creation only scenario
+mimir:
+  enabled: true
+
+crossplane:
+  enabled: true
+  observeOnly: false
+  provider: aws
+  providerConfigRef: test-no-iam
+  clusterName: test-no-iam
+  clusterNamespace: org-giantswarm
+  region: ap-southeast-1
+  tags:
+    - key: app
+      value: mimir
+    - key: installation
+      value: test-no-iam
+  aws:
+    enabled: true
+    mimir:
+      name: giantswarm-test-no-iam-mimir
+      tags:
+        - key: name
+          value: giantswarm-test-no-iam-mimir
+    ruler:
+      name: giantswarm-test-no-iam-mimir-ruler
+      tags:
+        - key: name
+          value: giantswarm-test-no-iam-mimir-ruler
+    alertmanager:
+      name: giantswarm-test-no-iam-mimir-alertmanager
+      tags:
+        - key: name
+          value: giantswarm-test-no-iam-mimir-alertmanager
+    iam:
+      enabled: false

@@ -1,0 +1,58 @@
+# Test Gateway API routes enabled with SecurityPolicy and BackendTrafficPolicy
+mimir:
+  enabled: true
+
+routes:
+  gateway:
+    enabled: true
+    kind: HTTPRoute
+    hostnames:
+      - mimir.example.giantswarm.io
+    parentRefs:
+      - name: giantswarm-default
+        namespace: envoy-gateway-system
+    additionalRules:
+      - backendRefs:
+          - name: mimir-gateway
+            port: 80
+        matches:
+          - headers:
+              - name: "X-Scope-OrgID"
+                value: "^.+$"
+                type: RegularExpression
+            path:
+              type: PathPrefix
+              value: /api/v1/push
+        filters:
+          - type: ResponseHeaderModifier
+            responseHeaderModifier:
+              set:
+                - name: X-Scope-OrgID
+                  value: "%REQ(X-Scope-OrgID)%"
+    matches:
+      - path:
+          type: PathPrefix
+          value: /api/v1/push
+      - path:
+          type: PathPrefix
+          value: /prometheus/config/v1/rules
+    filters:
+      - type: ExtensionRef
+        extensionRef:
+          group: gateway.envoyproxy.io
+          kind: HTTPRouteFilter
+          name: mimir-gateway
+    httpRouteFilter:
+      enabled: true
+    securityPolicy:
+      enabled: true
+      basicAuth:
+        users:
+          group: ""
+          kind: Secret
+          name: mimir-gateway-httproute-auth
+          namespace: mimir
+    backendTrafficPolicy:
+      enabled: true
+      requestBuffer:
+        limit: 50Mi
