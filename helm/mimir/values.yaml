@@ -425,14 +425,38 @@ mimir:
   index-cache:
     # -- Specifies whether memcached based index-cache should be enabled
     enabled: false
+    verticalAutoscaling:
+      enabled: false
+      minAllowed:
+        cpu: 100m
+        memory: 500Mi
+      maxAllowed:
+        cpu: 1000m
+        memory: 2Gi
 
   metadata-cache:
     # -- Specifies whether memcached based metadata-cache should be enabled
     enabled: false
+    verticalAutoscaling:
+      enabled: false
+      minAllowed:
+        cpu: 100m
+        memory: 500Mi
+      maxAllowed:
+        cpu: 1000m
+        memory: 2Gi
 
   results-cache:
     # -- Specifies whether memcached based results-cache should be enabled
     enabled: false
+    verticalAutoscaling:
+      enabled: false
+      minAllowed:
+        cpu: 100m
+        memory: 500Mi
+      maxAllowed:
+        cpu: 1000m
+        memory: 2Gi
 
   # -- Setting for the Grafana Rollout Operator https://github.com/grafana/helm-charts/tree/main/charts/rollout-operator
   rollout_operator:
@@ -481,7 +505,7 @@ mimir:
         repository: giantswarm/nginx-unprivileged
 
 
-# -- Crossplane configuration for automated infrastructure provisioning
+# configuration for automated infrastructure provisioning
 crossplane:
   # -- Enable Crossplane resources
   enabled: false

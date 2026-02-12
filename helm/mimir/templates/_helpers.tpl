@@ -32,7 +32,7 @@ Params:
   rolloutZoneName = rollout zone name (optional)
 */}}
 {{- define "mimir.labels" -}}
-application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "io.giantswarm.application.team" | default "atlas" | quote }}
 {{ if .ctx.Values.enterprise.legacyLabels }}
 {{- if .component -}}
 app: {{ include "mimir.name" .ctx }}-{{ .component }}
@@ -78,7 +78,7 @@ Params:
   rolloutZoneName = rollout zone name (optional)
 */}}
 {{- define "mimir.podLabels" -}}
-application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "application.giantswarm.io/team" | default "atlas" | quote }}
+application.giantswarm.io/team: {{ index .ctx.Chart.Annotations "io.giantswarm.application.team" | default "atlas" | quote }}
 {{ with .ctx.Values.global.podLabels -}}
 {{ toYaml . }}
 {{ end }}

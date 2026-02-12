@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add VerticalPodAutoscaler support for index-cache, metadata-cache, and results-cache.
+
 ### Changed
 
+- Change team annotation in `Chart.yaml` to OpenContainers format (`io.giantswarm.application.team`).
 - CI: test mimir disabled
 
 ### Fixed
