@@ -505,7 +505,7 @@ mimir:
         repository: giantswarm/nginx-unprivileged
 
 
-# configuration for automated infrastructure provisioning
+# -- Crossplane configuration for automated infrastructure provisioning
 crossplane:
   # -- Enable Crossplane resources
   enabled: false
