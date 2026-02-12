@@ -17,4 +17,4 @@ dependencies:
     condition: mimir.enabled
 version: 0.24.0
 annotations:
-  application.giantswarm.io/team: atlas
+  io.giantswarm.application.team: atlas
