@@ -1,0 +1,14 @@
+{{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAzure" .) .Values.crossplane.azure.enabled .Values.crossplane.private }}
+{{- /* Mimir private endpoint */ -}}
+{{- if .Values.crossplane.azure.mimir.name }}
+{{ include "mimir.crossplane.azure.privateEndpoint" (dict "root" . "containerName" .Values.crossplane.azure.mimir.name "component" "mimir") }}
+{{- end }}
+{{- /* Ruler private endpoint */ -}}
+{{- if .Values.crossplane.azure.ruler.name }}
+{{ include "mimir.crossplane.azure.privateEndpoint" (dict "root" . "containerName" .Values.crossplane.azure.ruler.name "component" "ruler") }}
+{{- end }}
+{{- /* Alertmanager private endpoint */ -}}
+{{- if .Values.crossplane.azure.alertmanager.name }}
+{{ include "mimir.crossplane.azure.privateEndpoint" (dict "root" . "containerName" .Values.crossplane.azure.alertmanager.name "component" "alertmanager") }}
+{{- end }}
+{{- end }}

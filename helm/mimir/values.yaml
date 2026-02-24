@@ -509,6 +509,8 @@ mimir:
 crossplane:
   # -- Enable Crossplane resources
   enabled: false
+  # -- Whether the object storage should be private (no public endpoint, access via private endpoint only)
+  private: false
   # -- Crossplane provider (e.g., aws, azure)
   provider: aws
   # -- Crossplane ProviderConfig name
@@ -570,3 +572,26 @@ crossplane:
     iam:
       # -- Enable IAM role creation via Crossplane
       enabled: true
+  azure:
+    # -- Enable Azure Crossplane resources
+    enabled: false
+    # -- Azure Resource Group name
+    resourceGroup: ""
+    # -- Container configuration for Mimir blocks storage
+    mimir:
+      # -- Container name for Mimir blocks storage (also used to derive storage account name)
+      name: ""
+      # -- Number of days to retain blobs before expiration (omit or set to 0 to disable lifecycle)
+      lifecycleDays: 100
+    # -- Container configuration for Ruler storage
+    ruler:
+      # -- Container name for Ruler storage (also used to derive storage account name)
+      name: ""
+      # -- Number of days to retain blobs before expiration (omit or set to 0 to disable lifecycle)
+      lifecycleDays: 100
+    # -- Container configuration for Alertmanager storage
+    alertmanager:
+      # -- Container name for Alertmanager storage (also used to derive storage account name)
+      name: ""
+      # -- Number of days to retain blobs before expiration (omit or set to 0 to disable lifecycle)
+      lifecycleDays: 100
