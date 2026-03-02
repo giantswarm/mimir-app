@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add Crossplane support for Azure (CAPZ) blob storage provisioning with the following resources:
+  - Storage Accounts and Blob Containers for mimir, ruler, and alertmanager components
+  - ManagementPolicy for automatic blob expiration (configurable per component)
+  - PrivateEndpoint for private cluster deployments (when `crossplane.private: true`)
+- Tags from AzureCluster CR are automatically merged with user-provided tags (keys sanitized for Azure compatibility)
+- Storage account names are automatically derived and sanitized from container names to meet Azure naming requirements
+
 ## [0.25.0] - 2026-02-12
 
 ### Added

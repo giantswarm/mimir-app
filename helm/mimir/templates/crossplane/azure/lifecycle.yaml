@@ -1,0 +1,14 @@
+{{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAzure" .) .Values.crossplane.azure.enabled }}
+{{- /* Mimir container lifecycle */ -}}
+{{- if and .Values.crossplane.azure.mimir.name .Values.crossplane.azure.mimir.lifecycleDays }}
+{{ include "mimir.crossplane.azure.lifecycle" (dict "root" . "containerName" .Values.crossplane.azure.mimir.name "component" "mimir" "lifecycleDays" .Values.crossplane.azure.mimir.lifecycleDays) }}
+{{- end }}
+{{- /* Ruler container lifecycle */ -}}
+{{- if and .Values.crossplane.azure.ruler.name .Values.crossplane.azure.ruler.lifecycleDays }}
+{{ include "mimir.crossplane.azure.lifecycle" (dict "root" . "containerName" .Values.crossplane.azure.ruler.name "component" "ruler" "lifecycleDays" .Values.crossplane.azure.ruler.lifecycleDays) }}
+{{- end }}
+{{- /* Alertmanager container lifecycle */ -}}
+{{- if and .Values.crossplane.azure.alertmanager.name .Values.crossplane.azure.alertmanager.lifecycleDays }}
+{{ include "mimir.crossplane.azure.lifecycle" (dict "root" . "containerName" .Values.crossplane.azure.alertmanager.name "component" "alertmanager" "lifecycleDays" .Values.crossplane.azure.alertmanager.lifecycleDays) }}
+{{- end }}
+{{- end }}
