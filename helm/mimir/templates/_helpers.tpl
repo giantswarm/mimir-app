@@ -151,3 +151,46 @@ rollout-group: {{ .component }}
 zone: {{ .rolloutZoneName }}
 {{- end }}
 {{- end -}}
+
+{{/*
+Mimir common VerticalPodAutoscaler definition.
+Params:
+  ctx        = . context
+  component  = component name (used for containerName, resourceName, and labels)
+  memberlist = true if part of memberlist gossip ring (optional)
+  targetKind = targetRef workload kind, defaults to "StatefulSet" (optional)
+  vpa        = verticalAutoscaling values dict
+*/}}
+{{- define "mimir.lib.verticalPodAutoscaler" -}}
+{{- with .vpa }}
+{{- if .enabled }}
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ include "mimir.resourceName" (dict "ctx" $.ctx "component" $.component "memberlist" $.memberlist) }}
+  namespace: {{ $.ctx.Release.Namespace | quote }}
+  labels:
+    {{- include "mimir.labels" (dict "ctx" $.ctx "component" $.component) | nindent 4 }}
+spec:
+  resourcePolicy:
+    containerPolicies:
+    - containerName: {{ $.component }}
+      controlledValues: {{ .controlledValues | default "RequestsAndLimits" }}
+      {{- with .minAllowed }}
+      minAllowed:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .maxAllowed }}
+      maxAllowed:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      mode: {{ .mode | default "Auto" }}
+  targetRef:
+    apiVersion: apps/v1
+    kind: {{ $.targetKind | default "StatefulSet" }}
+    name: {{ include "mimir.resourceName" (dict "ctx" $.ctx "component" $.component "memberlist" $.memberlist) }}
+  updatePolicy:
+    updateMode: {{ .updateMode | default "Recreate" }}
+{{- end }}
+{{- end }}
+{{- end -}}

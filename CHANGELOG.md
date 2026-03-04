@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Refactor VPA templates to use a shared `mimir.lib.verticalPodAutoscaler` helper, reducing per-component templates to 3 lines each.
+- VPA `updateMode` now defaults to `Recreate` (was `Auto`) and is configurable per component via `verticalAutoscaling.updateMode`.
+- VPA `controlledValues` and container `mode` are now configurable per component via `verticalAutoscaling.controlledValues` and `verticalAutoscaling.mode`.
+- `minAllowed` and `maxAllowed` are now optional and accept any resource key (not limited to `cpu` and `memory`).
+
 ## [0.26.0] - 2026-03-02
 
 ### Added
