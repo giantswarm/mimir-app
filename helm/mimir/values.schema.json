@@ -566,27 +566,23 @@
                                 "enabled": {
                                     "type": "boolean"
                                 },
-                                "maxAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "updateMode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                },
+                                "controlledValues": {
+                                    "type": "string",
+                                    "enum": ["RequestsAndLimits", "RequestsOnly"]
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Off"]
                                 },
                                 "minAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "type": "object"
+                                },
+                                "maxAllowed": {
+                                    "type": "object"
                                 }
                             }
                         }
@@ -790,27 +786,23 @@
                                 "enabled": {
                                     "type": "boolean"
                                 },
-                                "maxAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "updateMode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                },
+                                "controlledValues": {
+                                    "type": "string",
+                                    "enum": ["RequestsAndLimits", "RequestsOnly"]
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Off"]
                                 },
                                 "minAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "type": "object"
+                                },
+                                "maxAllowed": {
+                                    "type": "object"
                                 }
                             }
                         }
@@ -876,27 +868,23 @@
                                 "enabled": {
                                     "type": "boolean"
                                 },
-                                "maxAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "updateMode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                },
+                                "controlledValues": {
+                                    "type": "string",
+                                    "enum": ["RequestsAndLimits", "RequestsOnly"]
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Off"]
                                 },
                                 "minAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "type": "object"
+                                },
+                                "maxAllowed": {
+                                    "type": "object"
                                 }
                             }
                         }
@@ -975,27 +963,23 @@
                                 "enabled": {
                                     "type": "boolean"
                                 },
-                                "maxAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "updateMode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                },
+                                "controlledValues": {
+                                    "type": "string",
+                                    "enum": ["RequestsAndLimits", "RequestsOnly"]
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Off"]
                                 },
                                 "minAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "type": "object"
+                                },
+                                "maxAllowed": {
+                                    "type": "object"
                                 }
                             }
                         }
@@ -1222,27 +1206,23 @@
                                 "enabled": {
                                     "type": "boolean"
                                 },
-                                "maxAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "updateMode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                },
+                                "controlledValues": {
+                                    "type": "string",
+                                    "enum": ["RequestsAndLimits", "RequestsOnly"]
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Off"]
                                 },
                                 "minAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "type": "object"
+                                },
+                                "maxAllowed": {
+                                    "type": "object"
                                 }
                             }
                         }
@@ -1303,27 +1283,23 @@
                                 "enabled": {
                                     "type": "boolean"
                                 },
-                                "maxAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "updateMode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                },
+                                "controlledValues": {
+                                    "type": "string",
+                                    "enum": ["RequestsAndLimits", "RequestsOnly"]
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Off"]
                                 },
                                 "minAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "type": "object"
+                                },
+                                "maxAllowed": {
+                                    "type": "object"
                                 }
                             }
                         }
@@ -1392,27 +1368,23 @@
                                 "enabled": {
                                     "type": "boolean"
                                 },
-                                "maxAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                "updateMode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                },
+                                "controlledValues": {
+                                    "type": "string",
+                                    "enum": ["RequestsAndLimits", "RequestsOnly"]
+                                },
+                                "mode": {
+                                    "type": "string",
+                                    "enum": ["Auto", "Off"]
                                 },
                                 "minAllowed": {
-                                    "type": "object",
-                                    "properties": {
-                                        "cpu": {
-                                            "type": ["string", "number"]
-                                        },
-                                        "memory": {
-                                            "type": "string"
-                                        }
-                                    }
+                                    "type": "object"
+                                },
+                                "maxAllowed": {
+                                    "type": "object"
                                 }
                             }
                         }

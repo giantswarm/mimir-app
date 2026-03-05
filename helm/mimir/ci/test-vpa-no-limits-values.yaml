@@ -1,0 +1,62 @@
+# Test VPA templates with minAllowed and maxAllowed omitted.
+# Verifies that the lib helper renders valid VPAs when resource bounds are not set.
+mimir:
+  enabled: true
+
+  ingester:
+    verticalAutoscaling:
+      enabled: true
+      minAllowed: ~
+      maxAllowed: ~
+
+  store_gateway:
+    verticalAutoscaling:
+      enabled: true
+      minAllowed: ~
+      maxAllowed: ~
+
+  ruler:
+    verticalAutoscaling:
+      enabled: true
+      minAllowed: ~
+      maxAllowed: ~
+
+  chunks-cache:
+    enabled: true
+    verticalAutoscaling:
+      enabled: true
+      minAllowed: ~
+      maxAllowed: ~
+
+  index-cache:
+    enabled: true
+    verticalAutoscaling:
+      enabled: true
+      minAllowed: ~
+      maxAllowed: ~
+
+  metadata-cache:
+    enabled: true
+    verticalAutoscaling:
+      enabled: true
+      minAllowed: ~
+      maxAllowed: ~
+
+  results-cache:
+    enabled: true
+    verticalAutoscaling:
+      enabled: true
+      minAllowed: ~
+      maxAllowed: ~
+
+kedaAutoscaling:
+  querier:
+    enabled: false
+  gateway:
+    enabled: false
+
+hpa:
+  distributor:
+    enabled: false
+  querier:
+    enabled: false

@@ -259,6 +259,9 @@ mimir:
 
     verticalAutoscaling:
       enabled: true
+      updateMode: Recreate
+      controlledValues: RequestsAndLimits
+      mode: Auto
       # -- These values will be overriden in the config repos
       minAllowed:
         cpu: 100m
@@ -294,6 +297,9 @@ mimir:
 
     verticalAutoscaling:
       enabled: true
+      updateMode: Recreate
+      controlledValues: RequestsAndLimits
+      mode: Auto
       minAllowed:
         cpu: 100m
         memory: 128Mi
@@ -356,6 +362,9 @@ mimir:
 
     verticalAutoscaling:
       enabled: true
+      updateMode: Recreate
+      controlledValues: RequestsAndLimits
+      mode: Auto
       minAllowed:
         cpu: 100m
         memory: 256Mi
@@ -415,6 +424,9 @@ mimir:
     enabled: false
     verticalAutoscaling:
       enabled: false
+      updateMode: Recreate
+      controlledValues: RequestsAndLimits
+      mode: Auto
       minAllowed:
         cpu: 100m
         memory: 500Mi
@@ -427,6 +439,9 @@ mimir:
     enabled: false
     verticalAutoscaling:
       enabled: false
+      updateMode: Recreate
+      controlledValues: RequestsAndLimits
+      mode: Auto
       minAllowed:
         cpu: 100m
         memory: 500Mi
@@ -439,6 +454,9 @@ mimir:
     enabled: false
     verticalAutoscaling:
       enabled: false
+      updateMode: Recreate
+      controlledValues: RequestsAndLimits
+      mode: Auto
       minAllowed:
         cpu: 100m
         memory: 500Mi
@@ -451,6 +469,9 @@ mimir:
     enabled: false
     verticalAutoscaling:
       enabled: false
+      updateMode: Recreate
+      controlledValues: RequestsAndLimits
+      mode: Auto
       minAllowed:
         cpu: 100m
         memory: 500Mi
