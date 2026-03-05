@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add support for extracting tags from `VSphereCluster` and `VCDCluster` CRs in Crossplane.
+- Add `clusterProvider` field to support scenarios where the cluster infrastructure provider differs from the storage provider (e.g., a vSphere cluster using Azure blob storage).
+- Azure Subscription ID is now overridable via `crossplane.azure.subscriptionId`, falling back to an `AzureCluster` CR lookup if not provided.
+
 ### Changed
 
 - Refactor VPA templates to use a shared `mimir.lib.verticalPodAutoscaler` helper, reducing per-component templates to 3 lines each.
