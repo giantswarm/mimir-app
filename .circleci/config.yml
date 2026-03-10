@@ -18,13 +18,3 @@ workflows:
           filters:
             tags:
               only: /^v.*/
-      
-      - architect/run-tests-with-ats:
-          name: run-chart-tests-with-ats
-          filters:
-            # Do not trigger the job on merge to main.
-            branches:
-              ignore:
-                - main
-          requires:
-            - "package and push mimir chart to control-plane-catalogs"

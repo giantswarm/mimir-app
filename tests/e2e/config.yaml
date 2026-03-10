@@ -1,0 +1,5 @@
+appName: mimir
+repoName: mimir-app
+appCatalog: default
+providers:
+- capa
