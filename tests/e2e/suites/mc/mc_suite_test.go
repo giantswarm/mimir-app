@@ -19,7 +19,7 @@ import (
 
 const (
 	isUpgrade             = false
-	helmReleaseNamespace  = "flux-system"
+	helmReleaseNamespace  = "default"
 	appNamespace          = "mimir"
 )
 
