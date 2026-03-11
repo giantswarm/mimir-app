@@ -24,6 +24,8 @@ func TestMC(t *testing.T) {
 		WithInstallNamespace(installNamespace).
 		WithIsUpgrade(isUpgrade).
 		WithValuesFile("./values.yaml").
+		WithHelmRelease(true).
+		WithHelmTargetNamespace(installNamespace).
 		AfterClusterReady(func() {
 			It("should connect to the management cluster", func() {
 				Expect(state.GetFramework().MC().CheckConnection()).To(Succeed())
