@@ -1,6 +1,6 @@
 appName: mimir
 repoName: mimir-app
-appCatalog: default
+appCatalog: control-plane
 providers:
 - capa
 isMCTest: true
