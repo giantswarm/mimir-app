@@ -15,17 +15,18 @@ import (
 )
 
 const (
-	isUpgrade        = false
-	installNamespace = "mimir"
+	isUpgrade             = false
+	helmReleaseNamespace  = "flux-system"
+	appNamespace          = "mimir"
 )
 
 func TestMC(t *testing.T) {
 	suite.New().
-		WithInstallNamespace(installNamespace).
+		WithInstallNamespace(helmReleaseNamespace).
 		WithIsUpgrade(isUpgrade).
 		WithValuesFile("./values.yaml").
 		WithHelmRelease(true).
-		WithHelmTargetNamespace(installNamespace).
+		WithHelmTargetNamespace(appNamespace).
 		AfterClusterReady(func() {
 			It("should connect to the management cluster", func() {
 				Expect(state.GetFramework().MC().CheckConnection()).To(Succeed())
@@ -38,7 +39,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-ingester statefulset")
 					var sts appsv1.StatefulSet
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-ingester"}, &sts); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-ingester"}, &sts); err != nil {
 						return false
 					}
 					return sts.Status.ReadyReplicas == *sts.Spec.Replicas
@@ -50,7 +51,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-distributor deployment")
 					var dep appsv1.Deployment
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-distributor"}, &dep); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-distributor"}, &dep); err != nil {
 						return false
 					}
 					return dep.Status.ReadyReplicas == *dep.Spec.Replicas
@@ -63,7 +64,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-querier deployment")
 					var dep appsv1.Deployment
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-querier"}, &dep); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-querier"}, &dep); err != nil {
 						return false
 					}
 					return dep.Status.ReadyReplicas == *dep.Spec.Replicas
@@ -75,7 +76,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-query-frontend deployment")
 					var dep appsv1.Deployment
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-query-frontend"}, &dep); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-query-frontend"}, &dep); err != nil {
 						return false
 					}
 					return dep.Status.ReadyReplicas == *dep.Spec.Replicas
@@ -87,7 +88,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-query-scheduler deployment")
 					var dep appsv1.Deployment
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-query-scheduler"}, &dep); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-query-scheduler"}, &dep); err != nil {
 						return false
 					}
 					return dep.Status.ReadyReplicas == *dep.Spec.Replicas
@@ -100,7 +101,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-store-gateway statefulset")
 					var sts appsv1.StatefulSet
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-store-gateway"}, &sts); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-store-gateway"}, &sts); err != nil {
 						return false
 					}
 					return sts.Status.ReadyReplicas == *sts.Spec.Replicas
@@ -112,7 +113,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-compactor statefulset")
 					var sts appsv1.StatefulSet
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-compactor"}, &sts); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-compactor"}, &sts); err != nil {
 						return false
 					}
 					return sts.Status.ReadyReplicas == *sts.Spec.Replicas
@@ -125,7 +126,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-gateway deployment")
 					var dep appsv1.Deployment
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-gateway"}, &dep); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-gateway"}, &dep); err != nil {
 						return false
 					}
 					return dep.Status.ReadyReplicas == *dep.Spec.Replicas
@@ -138,7 +139,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-ruler deployment")
 					var dep appsv1.Deployment
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-ruler"}, &dep); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-ruler"}, &dep); err != nil {
 						return false
 					}
 					return dep.Status.ReadyReplicas == *dep.Spec.Replicas
@@ -150,7 +151,7 @@ func TestMC(t *testing.T) {
 				Eventually(func() bool {
 					logger.Log("Checking mimir-overrides-exporter deployment")
 					var dep appsv1.Deployment
-					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: installNamespace, Name: "mimir-overrides-exporter"}, &dep); err != nil {
+					if err := mcClient.Get(state.GetContext(), types.NamespacedName{Namespace: appNamespace, Name: "mimir-overrides-exporter"}, &dep); err != nil {
 						return false
 					}
 					return dep.Status.ReadyReplicas == *dep.Spec.Replicas
