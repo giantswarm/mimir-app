@@ -1,6 +1,7 @@
 package mc
 
 import (
+	"strings"
 	"testing"
 	"time"
 
@@ -11,7 +12,9 @@ import (
 	"github.com/giantswarm/apptest-framework/v3/pkg/suite"
 	"github.com/giantswarm/clustertest/v3/pkg/logger"
 	appsv1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
+	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
 const (
@@ -33,6 +36,39 @@ func TestMC(t *testing.T) {
 			})
 		}).
 		Tests(func() {
+			It("should have pods created for all mimir components", func() {
+				mcClient := state.GetFramework().MC()
+				var podList corev1.PodList
+				Expect(mcClient.List(state.GetContext(), &podList, client.InNamespace(appNamespace))).To(Succeed())
+
+				for _, pod := range podList.Items {
+					logger.Log("Pod: %s, Phase: %s", pod.Name, pod.Status.Phase)
+				}
+
+				components := []string{
+					"mimir-ingester",
+					"mimir-distributor",
+					"mimir-querier",
+					"mimir-query-frontend",
+					"mimir-query-scheduler",
+					"mimir-store-gateway",
+					"mimir-compactor",
+					"mimir-gateway",
+					"mimir-ruler",
+					"mimir-overrides-exporter",
+				}
+				for _, component := range components {
+					found := false
+					for _, pod := range podList.Items {
+						if strings.HasPrefix(pod.Name, component+"-") || pod.Name == component {
+							found = true
+							break
+						}
+					}
+					Expect(found).To(BeTrue(), "expected at least one pod for component %s", component)
+				}
+			})
+
 			// Write path
 			It("should have mimir-ingester statefulset ready on the MC", func() {
 				mcClient := state.GetFramework().MC()
@@ -160,3 +196,4 @@ func TestMC(t *testing.T) {
 		}).
 		Run(t, "Mimir MC test")
 }
+
