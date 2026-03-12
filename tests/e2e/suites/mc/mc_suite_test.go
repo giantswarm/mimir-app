@@ -18,9 +18,9 @@ import (
 )
 
 const (
-	isUpgrade             = false
-	helmReleaseNamespace  = "default"
-	appNamespace          = "mimir"
+	isUpgrade            = false
+	helmReleaseNamespace = "default"
+	appNamespace         = "mimir"
 )
 
 func TestMC(t *testing.T) {
@@ -196,4 +196,3 @@ func TestMC(t *testing.T) {
 		}).
 		Run(t, "Mimir MC test")
 }
-
