@@ -19,7 +19,6 @@ import (
 
 const (
 	isUpgrade    = false
-	appName      = "mimir"
 	appNamespace = "mimir"
 )
 
@@ -29,7 +28,7 @@ func TestMC(t *testing.T) {
 		WithIsUpgrade(isUpgrade).
 		WithValuesFile("./values.yaml").
 		WithHelmRelease(true).
-		WithHelmServiceAccountName(appName).
+		WithHelmTargetNamespace(appNamespace).
 		AfterClusterReady(func() {
 			It("should connect to the management cluster", func() {
 				Expect(state.GetFramework().MC().CheckConnection()).To(Succeed())
