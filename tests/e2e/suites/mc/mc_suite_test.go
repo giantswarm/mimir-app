@@ -18,18 +18,18 @@ import (
 )
 
 const (
-	isUpgrade            = false
-	helmReleaseNamespace = "default"
-	appNamespace         = "mimir"
+	isUpgrade    = false
+	appName      = "mimir"
+	appNamespace = "mimir"
 )
 
 func TestMC(t *testing.T) {
 	suite.New().
-		WithInstallNamespace(helmReleaseNamespace).
+		WithInstallNamespace(appNamespace).
 		WithIsUpgrade(isUpgrade).
 		WithValuesFile("./values.yaml").
 		WithHelmRelease(true).
-		WithHelmTargetNamespace(appNamespace).
+		WithHelmServiceAccountName(appName).
 		AfterClusterReady(func() {
 			It("should connect to the management cluster", func() {
 				Expect(state.GetFramework().MC().CheckConnection()).To(Succeed())
