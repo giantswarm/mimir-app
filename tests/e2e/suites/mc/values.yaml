@@ -1,0 +1,5 @@
+# Enable minio as a self-contained object store backend for testing.
+# This avoids requiring external cloud storage credentials.
+mimir:
+  minio:
+    enabled: true
