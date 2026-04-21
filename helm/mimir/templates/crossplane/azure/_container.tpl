@@ -21,7 +21,10 @@ spec:
     {{- if .root.Values.crossplane.observeOnly }}
     - Observe
     {{- else }}
-    - "*"
+    - "Create"
+    - "Delete"
+    - "LateInitialize"
+    - "Observe"
     {{- end }}
   forProvider:
     resourceGroupName: {{ .root.Values.crossplane.azure.resourceGroup }}
@@ -69,7 +72,10 @@ spec:
     {{- if .root.Values.crossplane.observeOnly }}
     - Observe
     {{- else }}
-    - "*"
+    - "Create"
+    - "Delete"
+    - "LateInitialize"
+    - "Observe"
     {{- end }}
   forProvider:
     storageAccountNameRef:
