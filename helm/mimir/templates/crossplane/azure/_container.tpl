@@ -22,7 +22,7 @@ spec:
     - Observe
     {{- else }}
     - "Create"
-    - "Delete"
+    - "Update"
     - "LateInitialize"
     - "Observe"
     {{- end }}
