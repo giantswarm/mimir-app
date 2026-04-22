@@ -24,7 +24,10 @@ spec:
     {{- if .root.Values.crossplane.observeOnly }}
     - Observe
     {{- else }}
-    - "*"
+    - "Create"
+    - "Update"
+    - "LateInitialize"
+    - "Observe"
     {{- end }}
   forProvider:
     forceDestroy: false
