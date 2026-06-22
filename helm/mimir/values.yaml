@@ -196,6 +196,8 @@ mimir:
 
   image:
     repository: gsoci.azurecr.io/giantswarm/mimir
+    # TODO: forced to 3.1.1 as an intermediate step. When upgrading to latest helm chart, revert
+    tag: 3.1.1
 
   mimir:
     # Values for classic ingestion architecture come from https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/classic-architecture.yaml

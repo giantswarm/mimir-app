@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Fix ABS config to not override AppVersion in Chart.yaml
 - Upgrade chart to version [6.0.6](https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#605)
-- Upgrade mimir to [3.0.4](https://github.com/grafana/mimir/blob/main/CHANGELOG.md#301)
+- Upgrade mimir to [3.1.1](https://github.com/grafana/mimir/blob/main/CHANGELOG.md#301)
 
 ## [0.28.0] - 2026-04-22
 
