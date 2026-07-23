@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- disabled gateway metrics servicemonitor. Had been added in `0.29.0` but not working.
+
 ## [0.29.0] - 2026-07-23
 
 ### Changed
