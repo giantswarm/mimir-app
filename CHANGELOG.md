@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.29.1] - 2026-07-23
+
 ### Fixed
 
 - disabled gateway metrics servicemonitor. Had been added in `0.29.0` but not working.
@@ -370,7 +372,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.29.0...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.29.1...HEAD
+[0.29.1]: https://github.com/giantswarm/mimir-app/compare/v0.29.0...v0.29.1
 [0.29.0]: https://github.com/giantswarm/mimir-app/compare/v0.28.0...v0.29.0
 [0.28.0]: https://github.com/giantswarm/mimir-app/compare/v0.27.0...v0.28.0
 [0.27.0]: https://github.com/giantswarm/mimir-app/compare/v0.26.0...v0.27.0
