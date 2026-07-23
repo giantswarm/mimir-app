@@ -533,6 +533,8 @@ mimir:
     replicas: 1
 
     service:
+      labels:
+        prometheus.io/service-monitor: "false"
       nameOverride: ""
 
     securityContext:
