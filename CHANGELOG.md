@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade `mimir-distributed` chart to version [6.1.0](https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#610).
+
+### Fixed
+
+- Remove the unused `enterprise`/`legacyLabels` branches from the `mimir.labels`, `mimir.podLabels` and `mimir.selectorLabels` helpers, aligning them with upstream. The `mimir-distributed` 6.1.0 chart dropped the default `enterprise` block from its values, which made these helpers fail with a nil-pointer error during templating.
+
 ## [0.29.1] - 2026-07-23
 
 ### Fixed
