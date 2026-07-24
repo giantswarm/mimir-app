@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade `mimir-distributed` chart to version [6.1.0](https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#610).
+
+### Fixed
+
+- Remove the unused `enterprise`/`legacyLabels` branches from the `mimir.labels`, `mimir.podLabels` and `mimir.selectorLabels` helpers, aligning them with upstream. The `mimir-distributed` 6.1.0 chart dropped the default `enterprise` block from its values, which made these helpers fail with a nil-pointer error during templating.
+
+### Removed
+
+- Remove the `prometheus.io/service-monitor: "false"` label from the gateway service, reverting the `0.29.1` bugfix. It is no longer needed as the `mimir-distributed` 6.1.0 chart removes the gateway serviceMonitor upstream.
+
 ## [0.29.1] - 2026-07-23
 
 ### Fixed
