@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.30.0] - 2026-07-28
+
 ### Changed
 
 - Upgrade `mimir-distributed` chart to version [6.1.0](https://github.com/grafana/mimir/blob/main/operations/helm/charts/mimir-distributed/CHANGELOG.md#610).
@@ -384,7 +386,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.29.1...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.30.0...HEAD
+[0.30.0]: https://github.com/giantswarm/mimir-app/compare/v0.29.1...v0.30.0
 [0.29.1]: https://github.com/giantswarm/mimir-app/compare/v0.29.0...v0.29.1
 [0.29.0]: https://github.com/giantswarm/mimir-app/compare/v0.28.0...v0.29.0
 [0.28.0]: https://github.com/giantswarm/mimir-app/compare/v0.27.0...v0.28.0
