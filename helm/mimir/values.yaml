@@ -316,7 +316,12 @@ mimir:
 
     verticalAutoscaling:
       enabled: true
-      updateMode: Recreate
+      # -- The ruler is a single replica that keeps every alert's `for` state in memory.
+      # `Initial` applies the recommendation only when a pod is created, so the VPA
+      # never evicts the running ruler. With `Recreate`, each shift of the CPU
+      # recommendation evicts the ruler, which resets all pending/firing alerts and
+      # causes spurious resolved/firing notifications.
+      updateMode: Initial
       controlledValues: RequestsAndLimits
       mode: Auto
       minAllowed:
