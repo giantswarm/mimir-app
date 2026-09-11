@@ -316,7 +316,8 @@ mimir:
 
     verticalAutoscaling:
       enabled: true
-      updateMode: Recreate
+      # -- ruler restarts break alert continuity, so we prefer to avoid them.
+      updateMode: Initial
       controlledValues: RequestsAndLimits
       mode: Auto
       minAllowed:
