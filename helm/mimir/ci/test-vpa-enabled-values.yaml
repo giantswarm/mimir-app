@@ -55,7 +55,7 @@ mimir:
     enabled: true
     verticalAutoscaling:
       enabled: true
-      updateMode: "Recreate"
+      updateMode: "InPlaceOrRecreate"
       minAllowed:
         cpu: 50m
         memory: 256Mi

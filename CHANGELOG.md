@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Allow `InPlaceOrRecreate` as a `verticalAutoscaling.updateMode` value in `values.schema.json`.
+
 ## [0.30.0] - 2026-07-28
 
 ### Changed

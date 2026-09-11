@@ -568,7 +568,7 @@
                                 },
                                 "updateMode": {
                                     "type": "string",
-                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                    "enum": ["Auto", "Recreate", "Initial", "Off", "InPlaceOrRecreate"]
                                 },
                                 "controlledValues": {
                                     "type": "string",
@@ -788,7 +788,7 @@
                                 },
                                 "updateMode": {
                                     "type": "string",
-                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                    "enum": ["Auto", "Recreate", "Initial", "Off", "InPlaceOrRecreate"]
                                 },
                                 "controlledValues": {
                                     "type": "string",
@@ -870,7 +870,7 @@
                                 },
                                 "updateMode": {
                                     "type": "string",
-                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                    "enum": ["Auto", "Recreate", "Initial", "Off", "InPlaceOrRecreate"]
                                 },
                                 "controlledValues": {
                                     "type": "string",
@@ -965,7 +965,7 @@
                                 },
                                 "updateMode": {
                                     "type": "string",
-                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                    "enum": ["Auto", "Recreate", "Initial", "Off", "InPlaceOrRecreate"]
                                 },
                                 "controlledValues": {
                                     "type": "string",
@@ -1208,7 +1208,7 @@
                                 },
                                 "updateMode": {
                                     "type": "string",
-                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                    "enum": ["Auto", "Recreate", "Initial", "Off", "InPlaceOrRecreate"]
                                 },
                                 "controlledValues": {
                                     "type": "string",
@@ -1285,7 +1285,7 @@
                                 },
                                 "updateMode": {
                                     "type": "string",
-                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                    "enum": ["Auto", "Recreate", "Initial", "Off", "InPlaceOrRecreate"]
                                 },
                                 "controlledValues": {
                                     "type": "string",
@@ -1370,7 +1370,7 @@
                                 },
                                 "updateMode": {
                                     "type": "string",
-                                    "enum": ["Auto", "Recreate", "Initial", "Off"]
+                                    "enum": ["Auto", "Recreate", "Initial", "Off", "InPlaceOrRecreate"]
                                 },
                                 "controlledValues": {
                                     "type": "string",
