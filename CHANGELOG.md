@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Set the ruler's VPA `updateMode` to `Initial` (was `Recreate`). The ruler runs as a single replica and keeps every alert's `for` state in memory; with `Recreate` the VPA updater evicted it whenever the CPU recommendation shifted, which reset all pending and firing alerts and produced spurious resolved/firing notifications and duplicate pages. With `Initial` the recommendation is still applied whenever a ruler pod is created, but a running ruler is never evicted by the VPA.
+- Set the ruler's VPA `updateMode` to `Initial` (was `Recreate`).
 
 ## [0.30.0] - 2026-07-28
 
