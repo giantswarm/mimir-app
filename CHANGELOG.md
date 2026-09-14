@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Allow `InPlaceOrRecreate` and `InPlace` as `verticalAutoscaling.updateMode` values in `values.schema.json`.
+
 ### Changed
 
 - Set the ruler's VPA `updateMode` to `Initial` (was `Recreate`).
