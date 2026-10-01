@@ -5,6 +5,14 @@ mimir:
   # -- MinIo is enabled to act as S3 backend storage
   minio:
     enabled: true
+    # MinIO withdrew its public images from Docker Hub and quay.io; the subchart's
+    # quay.io defaults return 401. The Pigsty fork is a drop-in replacement.
+    image:
+      repository: docker.io/pgsty/silo
+      tag: RELEASE.2026-09-03T13-18-01Z
+    mcImage:
+      repository: docker.io/pgsty/mc
+      tag: RELEASE.2026-09-13T00-00-00Z
   chunks-cache:
     allocatedMemory: 1024
     enabled: true
