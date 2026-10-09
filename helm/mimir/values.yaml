@@ -305,6 +305,8 @@ mimir:
   ruler:
     enabled: true
     replicas: 1
+    # -- If mimir.priorityClass.create is set to true, the following field must match mimir.priorityClass.name.
+    priorityClassName: mimir
     # Additional ruler container arguments, e.g. log level (debug, info, warn, error)
     extraArgs: {}
       # log.level: debug
