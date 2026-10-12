@@ -1239,6 +1239,9 @@
                 "ruler": {
                     "type": "object",
                     "properties": {
+                        "priorityClassName": {
+                            "type": "string"
+                        },
                         "enabled": {
                             "type": "boolean"
                         },
