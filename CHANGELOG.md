@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add the `mimir-ruler` PriorityClass (value 100000000).
+
 ### Changed
 
-- Set the ruler's `priorityClassName` to `mimir`.
+- Set the ruler's `priorityClassName` to `mimir-ruler`.
+- Set the store-gateway's `priorityClassName` to `mimir`.
 
 ## [0.30.1] - 2026-09-17
 

@@ -1,0 +1,11 @@
+{{- if and .Values.mimir.enabled .Values.mimir.priorityClass.enabled .Values.mimir.rulerPriorityClass.create }}
+apiVersion: scheduling.k8s.io/v1
+description: Priority class for mimir-ruler pods, below the mimir priority class.
+kind: PriorityClass
+metadata:
+  labels:
+    {{- include "mimir.labels" (dict "ctx" . "component" "ruler") | nindent 4 }}
+  name: {{ .Values.mimir.rulerPriorityClass.name }}
+preemptionPolicy: PreemptLowerPriority
+value: {{ .Values.mimir.rulerPriorityClass.value }}
+{{- end }}
