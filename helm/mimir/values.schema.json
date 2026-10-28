@@ -1061,6 +1061,20 @@
                         }
                     }
                 },
+                "rulerPriorityClass": {
+                    "type": "object",
+                    "properties": {
+                        "create": {
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "value": {
+                            "type": "integer"
+                        }
+                    }
+                },
                 "querier": {
                     "type": "object",
                     "properties": {

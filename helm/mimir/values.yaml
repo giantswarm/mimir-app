@@ -235,6 +235,12 @@ mimir:
     value: 500000000
     name: mimir
 
+  rulerPriorityClass:
+    create: true
+    # The value is only relevant when using the custom priority class.
+    value: 100000000
+    name: mimir-ruler
+
   alertmanager:
     enabled: false
 
@@ -305,8 +311,8 @@ mimir:
   ruler:
     enabled: true
     replicas: 1
-    # -- If mimir.priorityClass.create is set to true, the following field must match mimir.priorityClass.name.
-    priorityClassName: mimir
+    # -- If mimir.rulerPriorityClass.create is set to true, the following field must match mimir.rulerPriorityClass.name.
+    priorityClassName: mimir-ruler
     # Additional ruler container arguments, e.g. log level (debug, info, warn, error)
     extraArgs: {}
       # log.level: debug
