@@ -376,6 +376,8 @@ mimir:
     # Otherwise each zone starts `ceil(replicas / number_of_zones)` number of pods.
     #   E.g. if 'replicas' is set to 4 and there are 3 zones, then 4/3=1.33 and after rounding up it means 2 pods per zone are started.
     replicas: 1
+    # -- If mimir.priorityClass.create is set to true, the following field must match mimir.priorityClass.name.
+    priorityClassName: mimir
 
     resources:
       requests:

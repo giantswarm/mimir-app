@@ -1311,6 +1311,9 @@
                 "store_gateway": {
                     "type": "object",
                     "properties": {
+                        "priorityClassName": {
+                            "type": "string"
+                        },
                         "persistentVolume": {
                             "type": "object",
                             "properties": {
