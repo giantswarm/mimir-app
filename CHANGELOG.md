@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set the store-gateway's `priorityClassName` to `mimir`.
 - Update architect to v10.17.2 (giantswarm/mimir-app#335)
 
+### Fixed
+
+- Set `memberlist.rejoin_interval` to `1m`. A pod that joined the gossip ring only through a peer that then restarted no longer stays alone in its own ring. On the query-frontend, this showed as `empty ring` errors on every query.
+
 ## [0.30.1] - 2026-09-17
 
 ### Added

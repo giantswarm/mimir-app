@@ -212,6 +212,10 @@ mimir:
         remote_timeout: null
       ingester:
         push_grpc_method_enabled: null
+      memberlist:
+        # Rejoin the gossip ring every minute. A pod that joined only through a peer
+        # that then restarted stays alone in its own ring and never rejoins otherwise.
+        rejoin_interval: 1m
 
   kafka:
     enabled: false
