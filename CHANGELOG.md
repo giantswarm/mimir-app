@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set the ruler's `priorityClassName` to `mimir-ruler`.
 - Set the store-gateway's `priorityClassName` to `mimir`.
 - Update architect to v10.17.2 (giantswarm/mimir-app#335)
+- Update `mimir-distributed` chart to 6.2.2 (giantswarm/mimir-app#295, giantswarm/mimir-app#325).
+- Update Mimir image to 3.2.4 (giantswarm/mimir-app#296, giantswarm/mimir-app#323, giantswarm/mimir-app#331).
+- Set Chart `appVersion` to 3.2.4.
 
 ## [0.30.1] - 2026-09-17
 
