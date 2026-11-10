@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.31.0] - 2026-11-10
+
 ### Added
 
 - Add the `mimir-ruler` PriorityClass (value 100000000).
@@ -408,7 +410,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
 - First release
 
-[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.30.1...HEAD
+[Unreleased]: https://github.com/giantswarm/mimir-app/compare/v0.31.0...HEAD
+[0.31.0]: https://github.com/giantswarm/mimir-app/compare/v0.30.1...v0.31.0
 [0.30.1]: https://github.com/giantswarm/mimir-app/compare/v0.30.0...v0.30.1
 [0.30.0]: https://github.com/giantswarm/mimir-app/compare/v0.29.1...v0.30.0
 [0.29.1]: https://github.com/giantswarm/mimir-app/compare/v0.29.0...v0.29.1
