@@ -4,7 +4,7 @@ Usage: {{ include "mimir.crossplane.azure.account" (dict "root" . "containerName
 */}}
 {{- define "mimir.crossplane.azure.account" -}}
 {{- $tags := include "mimir.crossplane.tags" .root | fromYaml }}
-{{- $storageAccountName := include "mimir.crossplane.azure.storageAccountName" (dict "containerName" .containerName) }}
+{{- $storageAccountName := include "mimir.crossplane.azure.componentStorageAccountName" (dict "root" .root "component" .component "containerName" .containerName) }}
 {{- $isPrivate := .root.Values.crossplane.private }}
 ---
 apiVersion: storage.azure.upbound.io/v1beta2
@@ -56,7 +56,7 @@ Usage: {{ include "mimir.crossplane.azure.container" (dict "root" . "containerNa
 */}}
 {{- define "mimir.crossplane.azure.container" -}}
 {{- $tags := include "mimir.crossplane.tags" .root | fromYaml }}
-{{- $storageAccountName := include "mimir.crossplane.azure.storageAccountName" (dict "containerName" .containerName) }}
+{{- $storageAccountName := include "mimir.crossplane.azure.componentStorageAccountName" (dict "root" .root "component" .component "containerName" .containerName) }}
 ---
 apiVersion: storage.azure.upbound.io/v1beta1
 kind: Container
@@ -97,7 +97,7 @@ Reusable Azure ManagementPolicy (lifecycle) template
 Usage: {{ include "mimir.crossplane.azure.lifecycle" (dict "root" . "containerName" "my-container" "component" "mimir" "lifecycleDays" 100) }}
 */}}
 {{- define "mimir.crossplane.azure.lifecycle" -}}
-{{- $storageAccountName := include "mimir.crossplane.azure.storageAccountName" (dict "containerName" .containerName) }}
+{{- $storageAccountName := include "mimir.crossplane.azure.componentStorageAccountName" (dict "root" .root "component" .component "containerName" .containerName) }}
 ---
 apiVersion: storage.azure.upbound.io/v1beta2
 kind: ManagementPolicy
@@ -137,7 +137,7 @@ Usage: {{ include "mimir.crossplane.azure.privateEndpoint" (dict "root" . "conta
 */}}
 {{- define "mimir.crossplane.azure.privateEndpoint" -}}
 {{- $tags := include "mimir.crossplane.tags" .root | fromYaml }}
-{{- $storageAccountName := include "mimir.crossplane.azure.storageAccountName" (dict "containerName" .containerName) }}
+{{- $storageAccountName := include "mimir.crossplane.azure.componentStorageAccountName" (dict "root" .root "component" .component "containerName" .containerName) }}
 ---
 apiVersion: network.azure.upbound.io/v1beta1
 kind: PrivateEndpoint
