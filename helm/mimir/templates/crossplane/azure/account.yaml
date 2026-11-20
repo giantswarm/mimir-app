@@ -1,4 +1,5 @@
 {{- if and .Values.mimir.enabled .Values.crossplane.enabled (include "mimir.crossplane.isAzure" .) .Values.crossplane.azure.enabled }}
+{{- include "mimir.crossplane.azure.checkStorageAccountNames" . }}
 {{- /* Mimir storage account */ -}}
 {{- if .Values.crossplane.azure.mimir.name }}
 {{ include "mimir.crossplane.azure.account" (dict "root" . "containerName" .Values.crossplane.azure.mimir.name "component" "mimir") }}

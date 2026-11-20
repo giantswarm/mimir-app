@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `crossplane.azure.{mimir,ruler,alertmanager}.storageAccountName` to set a component's Azure storage account name.
+
+### Fixed
+
+- Fail with a clear message when two Azure components resolve to the same storage account name, instead of rendering duplicate `Account` resources. Default names are unchanged.
+
 ### Changed
 
 - Update architect to v10.18.0 (giantswarm/mimir-app#348)

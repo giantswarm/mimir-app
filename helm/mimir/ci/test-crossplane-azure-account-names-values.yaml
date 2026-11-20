@@ -1,0 +1,24 @@
+# Azure container names whose derived storage account names collide
+# (giantswarmexamplemcmimir for all three), kept apart with storageAccountName.
+mimir:
+  enabled: true
+
+crossplane:
+  enabled: true
+  provider: azure
+  providerConfigRef: test-cluster
+  clusterName: test-cluster
+  clusterNamespace: org-giantswarm
+  region: westeurope
+  azure:
+    enabled: true
+    resourceGroup: test-cluster
+    subscriptionId: 00000000-0000-0000-0000-000000000000
+    mimir:
+      name: giantswarm-examplemc-mimir
+    ruler:
+      name: giantswarm-examplemc-mimir-ruler
+      storageAccountName: gsexamplemcmimirruler
+    alertmanager:
+      name: giantswarm-examplemc-mimir-alertmanager
+      storageAccountName: gsexamplemcmimiralertman
